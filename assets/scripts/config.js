@@ -2,7 +2,8 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://ga-wdi-boston.herokuapp.com'
+    production: 'https://pjliddy.github.io/snippet-list-client/',
+    development: 'http://localhost:4741'
   }
 }
 
