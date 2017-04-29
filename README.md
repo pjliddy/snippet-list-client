@@ -9,9 +9,9 @@ All developers have huge collections of bookmarks to articles, documentation, sa
 ## User Stories
 
 #### Authentication Stories
-1. As an unregistered user, I want to register and create an account so I can use the application.
-1. As a registered user, I want to sign in so I can access my collection.
-1. As an authenticated user, I want to change my password.
+1. As an unregistered user, I want to register and create an account so I can use the application. _(API Complete)_
+1. As a registered user, I want to sign in so I can access my collection. _(API Complete)_
+1. As an authenticated user, I want to change my password. _(API Complete)_
 
 #### Collection Stories
 1. As an authenticated user, I want to add an snippet to my collection so I can refer to it later.
@@ -28,16 +28,16 @@ All developers have huge collections of bookmarks to articles, documentation, sa
 | Column     | Type    |
 |------------|---------|
 | id         | INTEGER |
-| first_name | TEXT    |
-| last_name  | TEXT    |
-| email      | TEXT    |
+| first_name | STRING  |
+| last_name  | STRING  |
+| email      | STRING  |
 
 #### Items
 | Column     | Type     |
 |------------|-----------|
 | id         | INTEGER   |
-| title      | TEXT      |
-| snippet    | TEXT      |
+| title      | string    |
+| body       | TEXT      |
 | tag        | TEXT (v2) |
 | user_id    | user.id   |
 
