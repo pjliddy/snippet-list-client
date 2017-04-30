@@ -63,6 +63,24 @@ const onGetItems = function (event) {
     .catch(ui.getItemsFailure)
 }
 
+const onGetItem = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.getItem(data)
+    .then(ui.getItemSuccess)
+    .catch(ui.getItemFailure)
+}
+
+const onCreateItem = function (event) {
+  event.preventDefault()
+  const data = getFormFields(event.target)
+
+  api.createItem(data)
+    .then(ui.createItemSuccess)
+    .catch(ui.createItemFailure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
@@ -70,6 +88,8 @@ const addHandlers = () => {
   $('#sign-out').on('click', onSignOut)
 
   $('#get-items').on('submit', onGetItems)
+  $('#get-item').on('submit', onGetItem)
+  $('#create-item').on('submit', onCreateItem)
 }
 
 module.exports = {

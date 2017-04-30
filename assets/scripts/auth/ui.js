@@ -65,17 +65,45 @@ const signOutFailure = (error) => {
 }
 
 // getItemsSuccess(response)
-//  successful user sign out
+//  successful item index
 
 const getItemsSuccess = (response) => {
   console.log(`getItemsSuccess(${response.items})`)
 }
 
 // getItemsFailure(error)
-//  error from user sign out
+//  error from item index
 
 const getItemsFailure = (error) => {
   console.log(`getItemsFailure(${error})`)
+}
+
+// getItemSuccess(response)
+//  successful show item
+
+const getItemSuccess = (response) => {
+  console.log(`getItemSuccess(${response})`)
+}
+
+// getItemFailure(error)
+//  error from show item
+
+const getItemFailure = (error) => {
+  console.log(`getItemSuccess(${error})`)
+}
+
+// createItemSuccess(response)
+//  successful create item
+
+const createItemSuccess = (response) => {
+  console.log(`createItemSuccess(${response})`)
+}
+
+// createItemFailure(error)
+//  error from create item
+
+const createItemFailure = (error) => {
+  console.log(`createItemFailure(${error})`)
 }
 
 module.exports = {
@@ -88,5 +116,9 @@ module.exports = {
   signOutSuccess,
   signOutFailure,
   getItemsSuccess,
-  getItemsFailure
+  getItemsFailure,
+  getItemSuccess,
+  getItemFailure,
+  createItemSuccess,
+  createItemFailure
 }

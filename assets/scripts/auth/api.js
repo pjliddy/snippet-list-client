@@ -87,10 +87,45 @@ const getItems = () => {
   })
 }
 
+// getItems(data)
+//  GET to base_URI + '/items/' + item_id
+
+const getItem = (data) => {
+  // debug
+  console.log(`getItem(${data})`)
+
+  return $.ajax({
+    url: config.apiOrigin + '/items/' + data.item.id,
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
+  })
+}
+
+// createItem(data)
+//  POST to base_URI + '/items'
+
+const createItem = (data) => {
+  // debug
+  console.log(`createItem(${data})`)
+
+  return $.ajax({
+    url: config.apiOrigin + '/items',
+    method: 'POST',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    },
+    data: data
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
   signOut,
-  getItems
+  getItems,
+  getItem,
+  createItem
 }

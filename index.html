@@ -18,6 +18,7 @@
 
     <h2 class="heading">Authentication</h2>
 
+    <!-- POST	/sign-up	users#signup -->
     <form id="sign-up" class="form-inline">
       <fieldset>
         <legend>Sign Up</legend>
@@ -33,11 +34,12 @@
           <label for="sign-up-password-confirm" class="sr-only">Confirm</label>
           <input type="password" class="form-control" name="credentials[password_confirmation]" id="sign-up-password-confirm" placeholder="confirm" value="">
         </div>
-        <button type="button" class="btn btn-link" id="sign-up-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn-link" id="sign-up-cancel">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
     </form>
 
+    <!-- POST	/sign-in	users#signin -->
     <form id="sign-in" class="form-inline">
       <fieldset>
         <legend>Sign In</legend>
@@ -49,11 +51,12 @@
           <label for="sign-in-password" class="sr-only">Password</label>
           <input type="password" class="form-control" name="credentials[password]" id="sign-in-password" placeholder="password" value="">
         </div>
-        <button type="button" class="btn btn-link" id="sign-in-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn-link" id="sign-in-cancel">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
     </form>
 
+    <!-- PATCH	/change-password/:id	users#changepw -->
     <form id="change-password" class="form-inline">
       <fieldset>
         <legend>Change Password</legend>
@@ -69,11 +72,12 @@
           <label for="change-password-confirm" class="sr-only">Confirm Password</label>
           <input type="password" class="form-control" name="passwords[password_confirmation]" id="change-password-confirm" placeholder="confirm" value="">
         </div>
-        <button type="button" class="btn btn-link" id="change-password-cancel-btn">Cancel</button>
+        <button type="button" class="btn btn-link" id="change-password-cancel">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
     </form>
 
+    <!-- DELETE	/sign-out/:id	users#signout -->
     <form id="sign-out">
       <fieldset>
         <legend>Sign Out</legend>
@@ -86,13 +90,46 @@
     <h2>Item Lists</h2>
 
     <!-- GET	/items	items#index -->
-
     <form id="get-items">
       <fieldset>
         <legend>Get Items</legend>
         <div class="form-group">
           <button type="submit" class="btn btn-default" id="get-items-btn">Get Items</button>
         </div>
+      </fieldset>
+    </form>
+
+    <!-- GET	/items/:id	items#show -->
+    <form id="get-item" class="form-inline">
+      <fieldset>
+        <legend>Get an Item</legend>
+        <div class="form-group">
+          <label for="get-item-id" class="sr-only">Item ID</label>
+          <input type="number" class="form-control" name="item[id]" id="get-item-id" placeholder="item_id" value="" min="1">
+        </div>
+        <button type="button" class="btn btn-link" id="get-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+
+    <!-- POST	/items	items#create -->
+    <form id="create-item" class="form">
+      <fieldset>
+        <legend>Create an Item</legend>
+        <div class="form-group">
+          <label for="create-item-user-id" class="sr-only">User ID</label>
+          <input type="text" class="form-control" name="item[user_id]" id="create-item-user-id" placeholder="user_id" value="">
+        </div>
+        <div class="form-group">
+          <label for="create-item-title" class="sr-only">Title</label>
+          <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
+        </div>
+        <div class="form-group">
+          <label for="create-item-body" class="sr-only">Body</label>
+          <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" value="" rows="3"></textarea>
+        </div>
+        <button type="button" class="btn btn-link" id="create-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
     </form>
 
