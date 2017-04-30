@@ -22,6 +22,7 @@ const signUpFailure = (error) => {
 
 const signInSuccess = (response) => {
   console.log(`signInSuccess(${response.user})`)
+  console.log(`${response.user.token}`)
   // store the user object (data)
   store.user = response.user
 }
