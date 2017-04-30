@@ -126,9 +126,47 @@
         </div>
         <div class="form-group">
           <label for="create-item-body" class="sr-only">Body</label>
-          <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" value="" rows="3"></textarea>
+          <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" rows="3"></textarea>
         </div>
         <button type="button" class="btn btn-link" id="create-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+
+    <!-- PATCH	/items/:id	items#update -->
+    <form id="update-item" class="form">
+      <fieldset>
+        <legend>Update an Item</legend>
+        <div class="form-group">
+          <label for="update-item-id" class="sr-only">Item ID</label>
+          <input type="number" class="form-control" name="item[id]" id="update-item-id" placeholder="item_id" value="" min="1">
+        </div>
+        <div class="form-group">
+          <label for="update-item-user-id" class="sr-only">User ID</label>
+          <input type="text" class="form-control" name="item[user_id]" id="update-item-user-id" placeholder="user_id" value="">
+        </div>
+        <div class="form-group">
+          <label for="update-item-title" class="sr-only">Title</label>
+          <input type="text" class="form-control" name="item[title]" id="update-item-title" placeholder="title" value="">
+        </div>
+        <div class="form-group">
+          <label for="update-item-body" class="sr-only">Body</label>
+          <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3"></textarea>
+        </div>
+        <button type="button" class="btn btn-link" id="update-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+
+    <!-- DELETE	/items/:id	items#destroy -->
+    <form id="delete-item" class="form-inline">
+      <fieldset>
+        <legend>Delete an Item</legend>
+        <div class="form-group">
+          <label for="delete-item-id" class="sr-only">Item ID</label>
+          <input type="number" class="form-control" name="item[id]" id="delete-item-id" placeholder="item_id" value="" min="1">
+        </div>
+        <button type="button" class="btn btn-link" id="delete-item-cancel">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
     </form>
