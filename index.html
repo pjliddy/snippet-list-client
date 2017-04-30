@@ -12,9 +12,12 @@
     <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
   </head>
   <body class="container">
-    <h1>Snippet List</h1>
+    <div class="page-header">
+      <h1>Snippet List</h1>
+    </div>
 
-    <h2>Authentication</h2>
+    <h2 class="heading">Authentication</h2>
+
     <form id="sign-up" class="form-inline">
       <fieldset>
         <legend>Sign Up</legend>
@@ -76,6 +79,19 @@
         <legend>Sign Out</legend>
         <div class="form-group">
           <button type="button" class="btn btn-default" id="sign-out-btn">Sign Out</button>
+        </div>
+      </fieldset>
+    </form>
+
+    <h2>Item Lists</h2>
+
+    <!-- GET	/items	items#index -->
+
+    <form id="get-items">
+      <fieldset>
+        <legend>Get Items</legend>
+        <div class="form-group">
+          <button type="submit" class="btn btn-default" id="get-items-btn">Get Items</button>
         </div>
       </fieldset>
     </form>

@@ -55,11 +55,21 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onGetItems = function (event) {
+  event.preventDefault()
+
+  api.getItems()
+    .then(ui.getItemsSuccess)
+    .catch(ui.getItemsFailure)
+}
+
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('click', onSignOut)
+
+  $('#get-items').on('submit', onGetItems)
 }
 
 module.exports = {

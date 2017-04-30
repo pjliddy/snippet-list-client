@@ -71,12 +71,26 @@ const signOut = () => {
 
 // list AJAX methods
 
-// signUp(data)
-//  POST to base_URI + '/sign-up'
+// getItems(data)
+//  GET to base_URI + '/items'
+
+const getItems = () => {
+  // debug
+  console.log(`getItems()`)
+
+  return $.ajax({
+    url: config.apiOrigin + '/items',
+    method: 'GET',
+    headers: {
+      'Authorization': 'Token token=' + store.user.token
+    }
+  })
+}
 
 module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  getItems
 }

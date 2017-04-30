@@ -64,6 +64,20 @@ const signOutFailure = (error) => {
   console.log(`signOutFailure(${error})`)
 }
 
+// getItemsSuccess(response)
+//  successful user sign out
+
+const getItemsSuccess = (response) => {
+  console.log(`getItemsSuccess(${response.items})`)
+}
+
+// getItemsFailure(error)
+//  error from user sign out
+
+const getItemsFailure = (error) => {
+  console.log(`getItemsFailure(${error})`)
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -72,5 +86,7 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  getItemsSuccess,
+  getItemsFailure
 }
