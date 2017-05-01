@@ -43,7 +43,7 @@ const signInFailure = (error) => {
 
 const changePasswordSuccess = (response) => {
   console.log(`changePasswordSuccess(${JSON.stringify(response)})`)
-  $('#change-password').closest('div').find('.well').html(JSON.stringify(response))
+  $('#change-password').closest('div').find('.well').html('undefined')
 }
 
 // changePasswordFailure(error)
@@ -59,7 +59,7 @@ const changePasswordFailure = (error) => {
 
 const signOutSuccess = (response) => {
   console.log(`signOutSuccess(${JSON.stringify(response)})`)
-  $('#sign-out').closest('div').find('.well').html(JSON.stringify(null))
+  $('#sign-out').closest('div').find('.well').html('undefined')
   // remove user from current session store
   store.user = null
 }
@@ -141,7 +141,7 @@ const updateItemFailure = (error) => {
 
 const deleteItemSuccess = (response) => {
   console.log(`deleteItemSuccess(${JSON.stringify(response)})`)
-  $('#delete-item').closest('div').find('.well').html(JSON.stringify(null))
+  $('#delete-item').closest('div').find('.well').html('undefined')
 }
 
 // deleteItemFailure(error)
