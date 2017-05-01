@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://pjliddy.github.io/snippet-list-client',
+    production: 'https://guarded-cove-70398.herokuapp.com',
     development: 'http://localhost:4741'
   }
 }
