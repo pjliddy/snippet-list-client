@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://pjliddy.github.io/snippet-list-client/',
+    production: 'https://pjliddy.github.io/snippet-list-client',
     development: 'http://localhost:4741'
   }
 }
