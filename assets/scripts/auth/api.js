@@ -6,14 +6,12 @@ const config = require('../config.js')
 // store accesses the client global store object
 const store = require('../store.js')
 
-// user AJAX methods
-
 // signUp(data)
 //  POST to base_URI + '/sign-up'
 
 const signUp = (data) => {
   // debug
-  console.log(`signUp(${data})`)
+  console.log(`signUp(${JSON.stringify(data)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
@@ -27,7 +25,7 @@ const signUp = (data) => {
 
 const signIn = (data) => {
   // debug
-  console.log(`signIn(${data})`)
+  console.log(`signIn(${JSON.stringify(data)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/sign-in',
@@ -41,7 +39,8 @@ const signIn = (data) => {
 
 const changePassword = (data) => {
   // debug
-  console.log(`changePassword(${data.passwords})`)
+  // console.log(`changePassword(${data.passwords})`)
+  console.log(`changePassword(${JSON.stringify(data.passwords)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.user.id,
@@ -69,8 +68,6 @@ const signOut = () => {
   })
 }
 
-// list AJAX methods
-
 // getItems(data)
 //  GET to base_URI + '/items'
 
@@ -92,7 +89,7 @@ const getItems = () => {
 
 const getItem = (data) => {
   // debug
-  console.log(`getItem(${data})`)
+  console.log(`getItem(${JSON.stringify(data)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/items/' + data.item.id,
@@ -108,7 +105,7 @@ const getItem = (data) => {
 
 const createItem = (data) => {
   // debug
-  console.log(`createItem(${data})`)
+  console.log(`createItem(${JSON.stringify(data)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/items',
@@ -125,7 +122,7 @@ const createItem = (data) => {
 
 const updateItem = (data) => {
   // debug
-  console.log(`updateItem(${data}): ${data.item.id}`)
+  console.log(`updateItem(${JSON.stringify(data)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/items/' + data.item.id,
@@ -142,7 +139,7 @@ const updateItem = (data) => {
 
 const deleteItem = (data) => {
   // debug
-  console.log(`deleteItem(${data}): ${data.item.id}`)
+  console.log(`deleteItem(${JSON.stringify(data)})`)
 
   return $.ajax({
     url: config.apiOrigin + '/items/' + data.item.id,

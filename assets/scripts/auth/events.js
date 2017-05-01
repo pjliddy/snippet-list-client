@@ -1,14 +1,17 @@
 'use strict'
 
 const getFormFields = require(`../../../lib/get-form-fields`)
-
 const api = require('./api')
 const ui = require('./ui')
 
+// onSignUp()
+//    handle form submission for user sign up event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION
+
 const onSignUp = function (event) {
-  // this = event.target
-  const data = getFormFields(this)
+  const data = getFormFields(event.target)
   event.preventDefault()
+
   if (data.credentials.password === data.credentials.password_confirmation) {
     api.signUp(data)
       .then(ui.signUpSuccess)
@@ -17,6 +20,10 @@ const onSignUp = function (event) {
     console.log('Passwords must match')
   }
 }
+
+// onSignIn()
+//    handle form submission for user sign in event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onSignIn = function (event) {
   const data = getFormFields(this)
@@ -32,11 +39,13 @@ const onSignIn = function (event) {
   }
 }
 
+// onChangePassword()
+//    handle form submission for change password event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION
+
 const onChangePassword = function (event) {
   const data = getFormFields(event.target)
   event.preventDefault()
-
-  // console.log(`CHANGE PASSWORD: ${data.passwords.old} to ${data.passwords.new}`)
 
   if (data.passwords.old.length !== 0 && data.passwords.new.length !== 0) {
     api.changePassword(data)
@@ -47,6 +56,10 @@ const onChangePassword = function (event) {
   }
 }
 
+// onSignOut()
+//    handle form submission for user sign out event
+//    NOTE: REQUIRES ARE YOU SURE? VALIDATION
+
 const onSignOut = function (event) {
   event.preventDefault()
 
@@ -55,6 +68,9 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+// onGetItems()
+//    handle form submission for get items index event
+
 const onGetItems = function (event) {
   event.preventDefault()
 
@@ -62,6 +78,10 @@ const onGetItems = function (event) {
     .then(ui.getItemsSuccess)
     .catch(ui.getItemsFailure)
 }
+
+// onGetItem()
+//    handle form submission for get item event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onGetItem = function (event) {
   event.preventDefault()
@@ -72,6 +92,10 @@ const onGetItem = function (event) {
     .catch(ui.getItemFailure)
 }
 
+// onCreateItem()
+//    handle form submission for create item event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION
+
 const onCreateItem = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -80,6 +104,10 @@ const onCreateItem = function (event) {
     .then(ui.createItemSuccess)
     .catch(ui.createItemFailure)
 }
+
+// onUpdateItem()
+//    handle form submission for update item event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onUpdateItem = function (event) {
   event.preventDefault()
@@ -90,6 +118,10 @@ const onUpdateItem = function (event) {
     .catch(ui.updateItemFailure)
 }
 
+// onDeleteItem()
+//    handle form submission for delete item event
+//    NOTE: REQUIRES INPUT FIELD VALIDATION & CONFIRMATION
+
 const onDeleteItem = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
@@ -98,6 +130,9 @@ const onDeleteItem = function (event) {
     .then(ui.deleteItemSuccess)
     .catch(ui.deleteItemFailure)
 }
+
+// addHandlers()
+//    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
   $('#sign-up').on('submit', onSignUp)

@@ -18,158 +18,192 @@
 
     <h2 class="heading">Authentication</h2>
 
-    <!-- POST	/sign-up	users#signup -->
-    <form id="sign-up" class="form-inline">
-      <fieldset>
-        <legend>Sign Up</legend>
-        <div class="form-group">
-          <label for="sign-up-email" class="sr-only">Email</label>
-          <input type="email" class="form-control" name="credentials[email]"  id="sign-up-email" placeholder="email" value="">
-        </div>
-        <div class="form-group">
-          <label for="sign-up-password" class="sr-only">Password</label>
-          <input type="password" class="form-control"  name="credentials[password]" id="sign-up-password"  placeholder="password" value="">
-        </div>
-        <div class="form-group">
-          <label for="sign-up-password-confirm" class="sr-only">Confirm</label>
-          <input type="password" class="form-control" name="credentials[password_confirmation]" id="sign-up-password-confirm" placeholder="confirm" value="">
-        </div>
-        <button type="button" class="btn btn-link" id="sign-up-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- POST	/sign-up	users#signup -->
+        <form id="sign-up">
+          <fieldset>
+            <legend>Sign Up</legend>
+            <div class="form-group">
+              <label for="sign-up-email" class="sr-only">Email</label>
+              <input type="email" class="form-control" name="credentials[email]"  id="sign-up-email" placeholder="email" value="">
+            </div>
+            <div class="form-group">
+              <label for="sign-up-password" class="sr-only">Password</label>
+              <input type="password" class="form-control"  name="credentials[password]" id="sign-up-password"  placeholder="password" value="">
+            </div>
+            <div class="form-group">
+              <label for="sign-up-password-confirm" class="sr-only">Confirm</label>
+              <input type="password" class="form-control" name="credentials[password_confirmation]" id="sign-up-password-confirm" placeholder="confirm" value="">
+            </div>
+            <button type="button" class="btn btn-link" id="sign-up-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Sign Up Response</div>
+      </div>
 
-    <!-- POST	/sign-in	users#signin -->
-    <form id="sign-in" class="form-inline">
-      <fieldset>
-        <legend>Sign In</legend>
-        <div class="form-group">
-          <label for="sign-in-email" class="sr-only">Email</label>
-          <input type="email" class="form-control" name="credentials[email]" id="sign-in-email" placeholder="email" value="">
-        </div>
-        <div class="form-group">
-          <label for="sign-in-password" class="sr-only">Password</label>
-          <input type="password" class="form-control" name="credentials[password]" id="sign-in-password" placeholder="password" value="">
-        </div>
-        <button type="button" class="btn btn-link" id="sign-in-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
+      <div class="col-sm-6">
+        <!-- POST	/sign-in	users#signin -->
+        <form id="sign-in">
+          <fieldset>
+            <legend>Sign In</legend>
+            <div class="form-group">
+              <label for="sign-in-email" class="sr-only">Email</label>
+              <input type="email" class="form-control" name="credentials[email]" id="sign-in-email" placeholder="email" value="">
+            </div>
+            <div class="form-group">
+              <label for="sign-in-password" class="sr-only">Password</label>
+              <input type="password" class="form-control" name="credentials[password]" id="sign-in-password" placeholder="password" value="">
+            </div>
+            <button type="button" class="btn btn-link" id="sign-in-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Sign In Response</div>
+      </div>
 
-    <!-- PATCH	/change-password/:id	users#changepw -->
-    <form id="change-password" class="form-inline">
-      <fieldset>
-        <legend>Change Password</legend>
-        <div class="form-group">
-          <label for="change-password-old" class="sr-only">Current Password</label>
-          <input type="password" class="form-control" name="passwords[old]" id="change-password-old" placeholder="old" value="">
-        </div>
-        <div class="form-group">
-          <label for="change-password-new" class="sr-only">New Password</label>
-          <input type="password" class="form-control" name="passwords[new]" id="change-password-new" placeholder="new" value="">
-        </div>
-        <div class="form-group">
-          <label for="change-password-confirm" class="sr-only">Confirm Password</label>
-          <input type="password" class="form-control" name="passwords[password_confirmation]" id="change-password-confirm" placeholder="confirm" value="">
-        </div>
-        <button type="button" class="btn btn-link" id="change-password-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
+      <div class="clearfix"></div>
 
-    <!-- DELETE	/sign-out/:id	users#signout -->
-    <form id="sign-out">
-      <fieldset>
-        <legend>Sign Out</legend>
-        <div class="form-group">
-          <button type="button" class="btn btn-default" id="sign-out-btn">Sign Out</button>
-        </div>
-      </fieldset>
-    </form>
+      <div class="col-sm-6">
+        <!-- PATCH	/change-password/:id	users#changepw -->
+        <form id="change-password">
+          <fieldset>
+            <legend>Change Password</legend>
+            <div class="form-group">
+              <label for="change-password-old" class="sr-only">Current Password</label>
+              <input type="password" class="form-control" name="passwords[old]" id="change-password-old" placeholder="old" value="">
+            </div>
+            <div class="form-group">
+              <label for="change-password-new" class="sr-only">New Password</label>
+              <input type="password" class="form-control" name="passwords[new]" id="change-password-new" placeholder="new" value="">
+            </div>
+            <div class="form-group">
+              <label for="change-password-confirm" class="sr-only">Confirm Password</label>
+              <input type="password" class="form-control" name="passwords[password_confirmation]" id="change-password-confirm" placeholder="confirm" value="">
+            </div>
+            <button type="button" class="btn btn-link" id="change-password-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Change Password Response</div>
+      </div>
+
+      <div class="col-sm-6">
+      <!-- DELETE	/sign-out/:id	users#signout -->
+        <form id="sign-out">
+          <fieldset>
+            <legend>Sign Out</legend>
+            <div class="form-group">
+              <button type="button" class="btn btn-default" id="sign-out-btn">Sign Out</button>
+            </div>
+          </fieldset>
+        </form>
+        <div class="well">Sign Out Response</div>
+      </div>
+
+      <div class="clearfix"></div>
+
+    </div> <!-- end row -->
 
     <h2>Item Lists</h2>
 
-    <!-- GET	/items	items#index -->
-    <form id="get-items">
-      <fieldset>
-        <legend>Get Items</legend>
-        <div class="form-group">
-          <button type="submit" class="btn btn-default" id="get-items-btn">Get Items</button>
-        </div>
-      </fieldset>
-    </form>
-
-    <!-- GET	/items/:id	items#show -->
-    <form id="get-item" class="form-inline">
-      <fieldset>
-        <legend>Get an Item</legend>
-        <div class="form-group">
-          <label for="get-item-id" class="sr-only">Item ID</label>
-          <input type="number" class="form-control" name="item[id]" id="get-item-id" placeholder="item_id" value="" min="1">
-        </div>
-        <button type="button" class="btn btn-link" id="get-item-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
-
-    <!-- POST	/items	items#create -->
-    <form id="create-item" class="form">
-      <fieldset>
-        <legend>Create an Item</legend>
-        <div class="form-group">
-          <label for="create-item-user-id" class="sr-only">User ID</label>
-          <input type="text" class="form-control" name="item[user_id]" id="create-item-user-id" placeholder="user_id" value="">
-        </div>
-        <div class="form-group">
-          <label for="create-item-title" class="sr-only">Title</label>
-          <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
-        </div>
-        <div class="form-group">
-          <label for="create-item-body" class="sr-only">Body</label>
-          <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" rows="3"></textarea>
-        </div>
-        <button type="button" class="btn btn-link" id="create-item-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
-
-    <!-- PATCH	/items/:id	items#update -->
-    <form id="update-item" class="form">
-      <fieldset>
-        <legend>Update an Item</legend>
-        <div class="form-group">
-          <label for="update-item-id" class="sr-only">Item ID</label>
-          <input type="number" class="form-control" name="item[id]" id="update-item-id" placeholder="item_id" value="" min="1">
-        </div>
-        <div class="form-group">
-          <label for="update-item-user-id" class="sr-only">User ID</label>
-          <input type="text" class="form-control" name="item[user_id]" id="update-item-user-id" placeholder="user_id" value="">
-        </div>
-        <div class="form-group">
-          <label for="update-item-title" class="sr-only">Title</label>
-          <input type="text" class="form-control" name="item[title]" id="update-item-title" placeholder="title" value="">
-        </div>
-        <div class="form-group">
-          <label for="update-item-body" class="sr-only">Body</label>
-          <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3"></textarea>
-        </div>
-        <button type="button" class="btn btn-link" id="update-item-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
-
-    <!-- DELETE	/items/:id	items#destroy -->
-    <form id="delete-item" class="form-inline">
-      <fieldset>
-        <legend>Delete an Item</legend>
-        <div class="form-group">
-          <label for="delete-item-id" class="sr-only">Item ID</label>
-          <input type="number" class="form-control" name="item[id]" id="delete-item-id" placeholder="item_id" value="" min="1">
-        </div>
-        <button type="button" class="btn btn-link" id="delete-item-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- GET	/items	items#index -->
+        <form id="get-items">
+          <fieldset>
+            <legend>Get Items</legend>
+            <div class="form-group">
+              <button type="submit" class="btn btn-default" id="get-items-btn">Get Items</button>
+            </div>
+          </fieldset>
+        </form>
+        <div class="well">Get Items Response</div>
+      </div>
+      <div class="col-sm-6">
+        <!-- GET	/items/:id	items#show -->
+        <form id="get-item" class="form-inline">
+          <fieldset>
+            <legend>Get an Item</legend>
+            <div class="form-group">
+              <label for="get-item-id" class="sr-only">Item ID</label>
+              <input type="number" class="form-control" name="item[id]" id="get-item-id" placeholder="item_id" value="" min="1">
+            </div>
+            <button type="button" class="btn btn-link" id="get-item-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Get Item Response</div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-6">
+        <!-- POST	/items	items#create -->
+        <form id="create-item" class="form">
+          <fieldset>
+            <legend>Create an Item</legend>
+            <div class="form-group">
+              <label for="create-item-user-id" class="sr-only">User ID</label>
+              <input type="text" class="form-control" name="item[user_id]" id="create-item-user-id" placeholder="user_id" value="">
+            </div>
+            <div class="form-group">
+              <label for="create-item-title" class="sr-only">Title</label>
+              <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
+            </div>
+            <div class="form-group">
+              <label for="create-item-body" class="sr-only">Body</label>
+              <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-link" id="create-item-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Create Item Response</div>
+      </div>
+      <div class="col-sm-6">
+        <!-- PATCH	/items/:id	items#update -->
+        <form id="update-item" class="form">
+          <fieldset>
+            <legend>Update an Item</legend>
+            <div class="form-group">
+              <label for="update-item-id" class="sr-only">Item ID</label>
+              <input type="number" class="form-control" name="item[id]" id="update-item-id" placeholder="item_id" value="" min="1">
+            </div>
+            <div class="form-group">
+              <label for="update-item-user-id" class="sr-only">User ID</label>
+              <input type="text" class="form-control" name="item[user_id]" id="update-item-user-id" placeholder="user_id" value="">
+            </div>
+            <div class="form-group">
+              <label for="update-item-title" class="sr-only">Title</label>
+              <input type="text" class="form-control" name="item[title]" id="update-item-title" placeholder="title" value="">
+            </div>
+            <div class="form-group">
+              <label for="update-item-body" class="sr-only">Body</label>
+              <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3"></textarea>
+            </div>
+            <button type="button" class="btn btn-link" id="update-item-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Update Item Response</div>
+      </div>
+      <div class="clearfix"></div>
+      <div class="col-sm-6">
+        <!-- DELETE	/items/:id	items#destroy -->
+        <form id="delete-item" class="form-inline">
+          <fieldset>
+            <legend>Delete an Item</legend>
+            <div class="form-group">
+              <label for="delete-item-id" class="sr-only">Item ID</label>
+              <input type="number" class="form-control" name="item[id]" id="delete-item-id" placeholder="item_id" value="" min="1">
+            </div>
+            <button type="button" class="btn btn-link" id="delete-item-cancel">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </fieldset>
+        </form>
+        <div class="well">Delete Items Response</div>
+      </div>
+    </div> <!-- end row -->
 
     <h2>Sample Snippets</h2>
 

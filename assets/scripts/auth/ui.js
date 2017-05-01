@@ -8,6 +8,7 @@ const store = require('../store.js')
 
 const signUpSuccess = (response) => {
   console.log(`signUpSuccess(${JSON.stringify(response)})`)
+  $('#sign-up').closest('div').find('.well').html(JSON.stringify(response))
 }
 
 // signUpFailure(error)
@@ -15,6 +16,7 @@ const signUpSuccess = (response) => {
 
 const signUpFailure = (error) => {
   console.log(`signUpFailure(${JSON.stringify(error)})`)
+  $('#sign-up').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // signInSuccess(response)
@@ -23,6 +25,7 @@ const signUpFailure = (error) => {
 const signInSuccess = (response) => {
   console.log(`signInSuccess(${JSON.stringify(response.user)})`)
   console.log(`${JSON.stringify(response.user.token)}`)
+  $('#sign-in').closest('div').find('.well').html(JSON.stringify(response))
   // store the user object (data)
   store.user = response.user
 }
@@ -32,6 +35,7 @@ const signInSuccess = (response) => {
 
 const signInFailure = (error) => {
   console.log(`signInFailure(${JSON.stringify(error)})`)
+  $('#sign-in').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // changePasswordSuccess(response)
@@ -39,6 +43,7 @@ const signInFailure = (error) => {
 
 const changePasswordSuccess = (response) => {
   console.log(`changePasswordSuccess(${JSON.stringify(response)})`)
+  $('#change-password').closest('div').find('.well').html(JSON.stringify(response))
 }
 
 // changePasswordFailure(error)
@@ -46,6 +51,7 @@ const changePasswordSuccess = (response) => {
 
 const changePasswordFailure = (error) => {
   console.log(`changePasswordFailure(${JSON.stringify(error)})`)
+  $('#change-password').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // signOutSuccess(response)
@@ -53,6 +59,7 @@ const changePasswordFailure = (error) => {
 
 const signOutSuccess = (response) => {
   console.log(`signOutSuccess(${JSON.stringify(response)})`)
+  $('#sign-out').closest('div').find('.well').html(JSON.stringify(null))
   // remove user from current session store
   store.user = null
 }
@@ -62,6 +69,7 @@ const signOutSuccess = (response) => {
 
 const signOutFailure = (error) => {
   console.log(`signOutFailure(${JSON.stringify(error)})`)
+  $('#sign-out').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // getItemsSuccess(response)
@@ -69,6 +77,7 @@ const signOutFailure = (error) => {
 
 const getItemsSuccess = (response) => {
   console.log(`getItemsSuccess(${JSON.stringify(response.items)})`)
+  $('#get-items').closest('div').find('.well').html(JSON.stringify(response))
 }
 
 // getItemsFailure(error)
@@ -76,6 +85,7 @@ const getItemsSuccess = (response) => {
 
 const getItemsFailure = (error) => {
   console.log(`getItemsFailure(${JSON.stringify(error)})`)
+  $('#get-items').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // getItemSuccess(response)
@@ -83,6 +93,7 @@ const getItemsFailure = (error) => {
 
 const getItemSuccess = (response) => {
   console.log(`getItemSuccess(${JSON.stringify(response)})`)
+  $('#get-item').closest('div').find('.well').html(JSON.stringify(response))
 }
 
 // getItemFailure(error)
@@ -90,6 +101,7 @@ const getItemSuccess = (response) => {
 
 const getItemFailure = (error) => {
   console.log(`getItemSuccess(${JSON.stringify(error)})`)
+  $('#get-item').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // createItemSuccess(response)
@@ -97,6 +109,7 @@ const getItemFailure = (error) => {
 
 const createItemSuccess = (response) => {
   console.log(`createItemSuccess(${JSON.stringify(response)})`)
+  $('#create-item').closest('div').find('.well').html(JSON.stringify(response))
 }
 
 // createItemFailure(error)
@@ -104,6 +117,7 @@ const createItemSuccess = (response) => {
 
 const createItemFailure = (error) => {
   console.log(`createItemFailure(${JSON.stringify(error)})`)
+  $('#create-item').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // updateItemSuccess(response)
@@ -111,6 +125,7 @@ const createItemFailure = (error) => {
 
 const updateItemSuccess = (response) => {
   console.log(`updateItemSuccess(${JSON.stringify(response)})`)
+  $('#update-item').closest('div').find('.well').html(JSON.stringify(response))
 }
 
 // updateItemFailure(error)
@@ -118,6 +133,7 @@ const updateItemSuccess = (response) => {
 
 const updateItemFailure = (error) => {
   console.log(`updateItemFailure(${JSON.stringify(error)})`)
+  $('#update-item').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 // deleteItemSuccess(response)
@@ -125,6 +141,7 @@ const updateItemFailure = (error) => {
 
 const deleteItemSuccess = (response) => {
   console.log(`deleteItemSuccess(${JSON.stringify(response)})`)
+  $('#delete-item').closest('div').find('.well').html(JSON.stringify(null))
 }
 
 // deleteItemFailure(error)
@@ -132,6 +149,7 @@ const deleteItemSuccess = (response) => {
 
 const deleteItemFailure = (error) => {
   console.log(`deleteItemFailure(${JSON.stringify(error)})`)
+  $('#delete-item').closest('div').find('.well').html(JSON.stringify(error))
 }
 
 module.exports = {
