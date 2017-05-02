@@ -2,7 +2,7 @@
 
 const config = {
   apiOrigins: {
-    production: 'https://guarded-cove-70398.herokuapp.com',
+    production: 'https://snippet-list-api.herokuapp.com',
     development: 'http://localhost:4741'
   }
 }

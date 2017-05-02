@@ -14,26 +14,84 @@
 </head>
 
 <body class="container">
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-default" role="navigation">
     <div class="container-fluid">
+
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
         <a class="navbar-brand" href="#">Snippet List</a>
       </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="sign-up-nav"><span class="glyphicon glyphicon-user" data-toggle="dropdown"></span> Sign Up<span class="caret"></span></a>
+            <ul id="sign-up-dropdown" class="dropdown-menu">
+              <li>
+                <div class="row">
+                  <div class="col-md-12">
+                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="sign-up">
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Confirm Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password" required>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="sign-in-nav"><span class="glyphicon glyphicon-log-in" data-toggle="dropdown"></span> Sign In<span class="caret"></span></a>
+            <ul id="sign-in-dropdown" class="dropdown-menu">
+              <li>
+                <div class="row">
+                  <div class="col-md-12">
+                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                      </div>
+                      <div class="form-group">
+                        <label class="sr-only" for="exampleInputPassword2">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                      </div>
+                      <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
         </ul>
       </div>
+      <!-- /.navbar-collapse -->
     </div>
+    <!-- /.container-fluid -->
   </nav>
 
   <!-- div to hold form panels should go here -->
+  <div class="template-form"></div>
 
   <!-- layout for sign up panel -->
   <div class="panel panel-default">
