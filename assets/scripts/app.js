@@ -19,8 +19,8 @@ const onShowSignIn = () => {
 }
 
 const addHandlers = () => {
-  $('#sign-up-nav').on('click', onShowSignUp)
-  $('#sign-in-nav').on('click', onShowSignIn)
+  // $('#sign-up-nav').on('click', onShowSignUp)
+  // $('#sign-in-nav').on('click', onShowSignIn)
 }
 
 module.exports = {

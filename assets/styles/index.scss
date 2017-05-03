@@ -2,81 +2,27 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 form {
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
 }
 
 .well {
   word-wrap: break-word;
 }
 
+.tab-content .panel {
+  border-top: none;
+  border-radius: 0;
+}
 // dropdown login form CSS
 
-#sign-up-dropdown,
-#sign-in-dropdown {
-  background-color: rgba(255,255,255,.8);
+.dropdown-menu {
   min-width: 250px;
-  overflow: hidden;
   padding: 14px 14px 0;
 }
 
-#sign-up-dropdown .help-block,
-#sign-in-dropdown .help-block {
-  font-size: 12px
-}
-
-#sign-up-dropdown .bottom,
-#sign-in-dropdown .bottom {
-  background-color: rgba(255,255,255,.8);
-  border-top: 1px solid #ddd;
-  clear: both;
-  padding: 14px;
-}
-
-#sign-up-dropdown .social-buttons,
-#sign-in-dropdown .social-buttons {
-  margin: 12px 0
-}
-
-#sign-up-dropdown .social-buttons a,
-#sign-in-dropdown .social-buttons a {
-  width: 49%;
-}
-
-#sign-up-dropdown .form-group,
-#sign-in-dropdown .form-group {
-  margin-bottom: 10px;
-}
-
-.btn-fb{
-  color: #fff;
-  background-color: #3b5998;
-}
-
-.btn-fb:hover{
-  color: #fff;
-  background-color: #496ebc
-}
-
-.btn-tw{
-  color: #fff;
-  background-color: #55acee;
-}
-
-.btn-tw:hover{
-  color: #fff;
-  background-color: #59b5fa;
-}
-
-@media(max-width:768px){
-  #sign-in-dropdown,
-  #sign-up-dropdown {
-    background-color: inherit;
-    color: #fff;
-  }
-
-  #sign-in-dropdown .bottom,
-  #sign-up-dropdown .bottom {
-    background-color: inherit;
-    border-top:0 none;
-  }
-}
+// @media(max-width:768px) {
+//   .dropdown-menu {
+//     // background-color: #ffffff;
+//     // // color: #fff;
+//   }
+// }
