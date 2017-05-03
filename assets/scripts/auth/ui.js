@@ -24,6 +24,7 @@ const signUpFailure = (error) => {
 const signInSuccess = (response) => {
   app.response('signInSuccess:', response)
   store.user = response.user
+  app.setPrivateMode()
 }
 
 // signInFailure(error)
@@ -51,7 +52,8 @@ const changePasswordFailure = (error) => {
 //  successful user sign out
 
 const signOutSuccess = (response) => {
-  app.response('signOutSuccess:', undefined)
+  app.setPublicMode()
+  // app.response('signOutSuccess:')
   store.user = null
 }
 

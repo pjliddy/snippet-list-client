@@ -71,11 +71,11 @@ const onDeleteItem = function (event) {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  $('#get-items').on('submit', onGetItems)
-  $('#get-item').on('submit', onGetItem)
-  $('#create-item').on('submit', onCreateItem)
-  $('#update-item').on('submit', onUpdateItem)
-  $('#delete-item').on('submit', onDeleteItem)
+  $('.content-div').on('submit', '#get-items', onGetItems)
+  $('.content-div').on('submit', '#get-item', onGetItem)
+  $('.content-div').on('submit', '#create-item', onCreateItem)
+  $('.content-div').on('submit', '#update-item', onUpdateItem)
+  $('.content-div').on('submit', '#delete-item', onDeleteItem)
 }
 
 module.exports = {

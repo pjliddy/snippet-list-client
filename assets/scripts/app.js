@@ -10,12 +10,21 @@ const failure = (msg, response) => {
   $('.console').append(JSON.stringify(response) + '<br/>')
 }
 
-const onShowSignUp = () => {
-  response('onShowSignUp', '')
+const clearConsole = () => {
+  $('.console').html('')
 }
 
-const onShowSignIn = () => {
-  response('onShowSignIn', '')
+const setPublicMode = function () {
+  const template = require('./templates/auth-forms.handlebars')
+  // const content = authTemplate()
+  $('.content-div').html(template())
+  clearConsole()
+}
+
+const setPrivateMode = function () {
+  const template = require('./templates/contents.handlebars')
+  // const content = authTemplate()
+  $('.content-div').html(template())
 }
 
 const addHandlers = () => {
@@ -26,5 +35,8 @@ const addHandlers = () => {
 module.exports = {
   response,
   failure,
+  clearConsole,
+  setPublicMode,
+  setPrivateMode,
   addHandlers
 }

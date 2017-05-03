@@ -72,10 +72,10 @@ const onSignOut = function (event) {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  $('#sign-up').on('submit', onSignUp)
-  $('#sign-in').on('submit', onSignIn)
-  $('#change-password').on('submit', onChangePassword)
-  $('#sign-out').on('click', onSignOut)
+  $('.content-div').on('submit', '#sign-up', onSignUp)
+  $('.content-div').on('submit', '#sign-in', onSignIn)
+  $('.content-div').on('submit', '#change-password', onChangePassword)
+  $('.content-div').on('submit', '#sign-out', onSignOut)
 }
 
 module.exports = {
