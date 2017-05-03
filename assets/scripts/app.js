@@ -15,16 +15,18 @@ const clearConsole = () => {
 }
 
 const setPublicMode = function () {
-  const template = require('./templates/auth-forms.handlebars')
-  // const content = authTemplate()
-  $('.content-div').html(template())
+  const navTemplate = require('./templates/nav-public.handlebars')
+  const contentTemplate = require('./templates/auth-forms.handlebars')
+  $('.content-div').html(contentTemplate())
+  $('.navbar-div').html(navTemplate())
   clearConsole()
 }
 
 const setPrivateMode = function () {
-  const template = require('./templates/contents.handlebars')
-  // const content = authTemplate()
-  $('.content-div').html(template())
+  const navTemplate = require('./templates/nav-private.handlebars')
+  const contentTemplate = require('./templates/contents.handlebars')
+  $('.content-div').html(contentTemplate())
+  $('.navbar-div').html(navTemplate())
 }
 
 const addHandlers = () => {

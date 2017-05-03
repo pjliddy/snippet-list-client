@@ -74,8 +74,8 @@ const onSignOut = function (event) {
 const addHandlers = () => {
   $('.content-div').on('submit', '#sign-up', onSignUp)
   $('.content-div').on('submit', '#sign-in', onSignIn)
-  $('.content-div').on('submit', '#change-password', onChangePassword)
-  $('.content-div').on('submit', '#sign-out', onSignOut)
+  $('.navbar-div').on('submit', '#change-password', onChangePassword)
+  $('.navbar-div').on('click', '#sign-out-btn', onSignOut)
 }
 
 module.exports = {
