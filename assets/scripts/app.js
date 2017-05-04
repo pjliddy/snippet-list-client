@@ -1,11 +1,14 @@
 'use strict'
 
-const response = (msg, response) => {
+const itemApi = require('./items/api.js')
+const ui = require('./items/ui.js')
+
+const succeed = (msg, response) => {
   console.log(`${msg}: ${JSON.stringify(response.items)}`)
   $('.console').append(JSON.stringify(response) + '<br/>')
 }
 
-const failure = (msg, response) => {
+const fail = (msg, response) => {
   console.error(`${msg}: ${JSON.stringify(response.items)}`)
   $('.console').append(JSON.stringify(response) + '<br/>')
 }
@@ -24,8 +27,12 @@ const setPublicMode = function () {
 
 const setPrivateMode = function () {
   const navTemplate = require('./templates/nav-private.handlebars')
-  const contentTemplate = require('./templates/contents.handlebars')
-  $('.content-div').html(contentTemplate())
+
+  // get books from API
+  itemApi.getItems()
+    .then(ui.getItemsSuccess)
+    .catch(ui.getItemsFailure)
+
   $('.navbar-div').html(navTemplate())
 }
 
@@ -35,8 +42,8 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  response,
-  failure,
+  succeed,
+  fail,
   clearConsole,
   setPublicMode,
   setPrivateMode,
