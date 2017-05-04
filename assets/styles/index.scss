@@ -10,8 +10,8 @@ form {
 }
 
 .tab-content .panel {
-  border-top: none;
   border-radius: 0;
+  border-top: 0;
 }
 // dropdown login form CSS
 
@@ -20,9 +20,10 @@ form {
   padding: 14px 14px 0;
 }
 
-// @media(max-width:768px) {
-//   .dropdown-menu {
-//     // background-color: #ffffff;
-//     // // color: #fff;
-//   }
-// }
+.panel-heading {
+  padding: 5px 15px;
+}
+
+.panel-title {
+  line-height: 33px;
+}

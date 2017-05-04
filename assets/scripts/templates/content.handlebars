@@ -1,0 +1,100 @@
+<div class="row">
+  {{#each items as |item|}}
+    <div class="col-sm-6 col-md-4">
+      <div class="panel panel-default" data-id="{{item.id}}">
+        <div class="panel-heading">
+          <h3 class="panel-title pull-left">{{item.title}}</h3>
+          <a href="#" class="panel-right btn btn-link pull-right">Remove <span class="glyphicon glyphicon-trash"></span></a>
+          <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+          {{item.body}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <!-- GET	/items/:id	items#show -->
+    <form id="get-item" class="form-inline">
+      <fieldset>
+        <legend>Get an Item</legend>
+        <div class="form-group">
+          <label for="get-item-id" class="sr-only">Item ID</label>
+          <input type="number" class="form-control" name="item[id]" id="get-item-id" placeholder="item_id" value="" min="1">
+        </div>
+        <button type="button" class="btn btn-link" id="get-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="col-sm-6">
+    <!-- POST	/items	items#create -->
+    <form id="create-item" class="form">
+      <fieldset>
+        <legend>Create an Item</legend>
+        <!-- <div class="form-group">
+          <label for="create-item-user-id" class="sr-only">User ID</label>
+          <input type="text" class="form-control" name="item[user_id]" id="create-item-user-id" placeholder="user_id" value="">
+        </div> -->
+        <div class="form-group">
+          <label for="create-item-title" class="sr-only">Title</label>
+          <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
+        </div>
+        <div class="form-group">
+          <label for="create-item-body" class="sr-only">Body</label>
+          <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" rows="3"></textarea>
+        </div>
+        <button type="button" class="btn btn-link" id="create-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="clearfix"></div>
+
+  <div class="col-sm-6">
+    <!-- PATCH	/items/:id	items#update -->
+    <form id="update-item" class="form">
+      <fieldset>
+        <legend>Update an Item</legend>
+        <div class="form-group">
+          <label for="update-item-id" class="sr-only">Item ID</label>
+          <input type="number" class="form-control" name="item[id]" id="update-item-id" placeholder="item_id" value="" min="1">
+        </div>
+        <div class="form-group">
+          <label for="update-item-user-id" class="sr-only">User ID</label>
+          <input type="text" class="form-control" name="item[user_id]" id="update-item-user-id" placeholder="user_id" value="">
+        </div>
+        <div class="form-group">
+          <label for="update-item-title" class="sr-only">Title</label>
+          <input type="text" class="form-control" name="item[title]" id="update-item-title" placeholder="title" value="">
+        </div>
+        <div class="form-group">
+          <label for="update-item-body" class="sr-only">Body</label>
+          <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3"></textarea>
+        </div>
+        <button type="button" class="btn btn-link" id="update-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <!-- DELETE	/items/:id	items#destroy -->
+    <form id="delete-item" class="form-inline">
+      <fieldset>
+        <legend>Delete an Item</legend>
+        <div class="form-group">
+          <label for="delete-item-id" class="sr-only">Item ID</label>
+          <input type="number" class="form-control" name="item[id]" id="delete-item-id" placeholder="item_id" value="" min="1">
+        </div>
+        <button type="button" class="btn btn-link" id="delete-item-cancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </fieldset>
+    </form>
+  </div>
+  <div class="clearfix"></div>
+
+</div>

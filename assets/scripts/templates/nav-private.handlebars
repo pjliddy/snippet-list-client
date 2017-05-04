@@ -1,0 +1,45 @@
+<div class="container-fluid">
+
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Snippet List</a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="sign-up-nav"><span class="glyphicon glyphicon-user" data-toggle="dropdown"></span> Change Password <span class="caret"></span></a>
+        <ul id="sign-up-dropdown" class="dropdown-menu">
+          <li>
+            <!-- PATCH	/change-password/:id	users#changepw -->
+            <form id="change-password" class="form">
+              <div class="form-group">
+                <label for="change-password-old" class="sr-only">Current Password</label>
+                <input type="password" class="form-control" name="passwords[old]" id="change-password-old" placeholder="Current Password" value="">
+              </div>
+              <div class="form-group">
+                <label for="change-password-new" class="sr-only">New Password</label>
+                <input type="password" class="form-control" name="passwords[new]" id="change-password-new" placeholder="New Password" value="">
+              </div>
+              <div class="form-group">
+                <label for="change-password-confirm" class="sr-only">Confirm Password</label>
+                <input type="password" class="form-control" name="passwords[password_confirmation]" id="change-password-confirm" placeholder="Confirm Password" value="">
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn btn-primary btn-block">Submit</button>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#" type="button" class="btn btn-link" id="sign-out-btn"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+    </ul>
+  </div>
+  <!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
