@@ -1,8 +1,12 @@
 'use strict'
 
-const getFormFields = require(`../../../lib/get-form-fields`)
+const getFormFields = require('../../../lib/get-form-fields')
+
 const api = require('./api')
 const ui = require('./ui')
+
+const itemApi = require('../items/api')
+const itemUi = require('../items/ui')
 
 // onSignUp()
 //    handle form submission for user sign up event
@@ -33,6 +37,11 @@ const onSignIn = function (event) {
   if (data.credentials.email.length !== 0 && data.credentials.password.length !== 0) {
     api.signIn(data)
       .then(ui.signInSuccess)
+      .then(() => {
+        itemApi.getItems()
+          .then(itemUi.getItemsSuccess)
+          .catch(itemUi.getItemsFailure)
+      })
       .catch(ui.signInFailure)
   } else {
     console.log('User name and password required')

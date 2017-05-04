@@ -1,9 +1,6 @@
 'use strict'
 
-const list = require('../app.js')
-
-// store accesses the client global store object
-// const store = require('../store.js')
+const view = require('../views')
 
 // getItemsSuccess(response)
 //  successful item index
@@ -11,72 +8,71 @@ const list = require('../app.js')
 const getItemsSuccess = (response) => {
   const contentTemplate = require('../templates/content.handlebars')
   const content = contentTemplate({ items: response.items })
-  $('.content-div').html(content)
-
-  list.succeed('getItemsSuccess:', response)
+  view.renderView('.content-div', content)
+  // view.successMessage('getItemsSuccess:', response)
 }
 
 // getItemsFailure(error)
 //  error from item index
 
 const getItemsFailure = (error) => {
-  list.fail('getItemsFailure:', error)
+  view.failureMessage('getItemsFailure:', error)
 }
 
 // getItemSuccess(response)
 //  successful show item
 
 const getItemSuccess = (response) => {
-  list.succeed('getItemSuccess:', response)
+  view.successMessage('getItemSuccess:', response)
 }
 
 // getItemFailure(error)
 //  error from show item
 
 const getItemFailure = (error) => {
-  list.fail('getItemFailure:', error)
+  view.failureMessage('getItemFailure:', error)
 }
 
 // createItemSuccess(response)
 //  successful create item
 
 const createItemSuccess = (response) => {
-  list.succeed('createItemSuccess:', response)
+  view.successMessage('createItemSuccess:', response)
 }
 
 // createItemFailure(error)
 //  error from create item
 
 const createItemFailure = (error) => {
-  list.fail('createItemFailure:', error)
+  view.failureMessage('createItemFailure:', error)
 }
 
 // updateItemSuccess(response)
 //  successful update item
 
 const updateItemSuccess = (response) => {
-  list.succeed('updateItemSuccess:', response)
+  view.successMessage('updateItemSuccess:', response)
 }
 
 // updateItemFailure(error)
 //  error from update item
 
 const updateItemFailure = (error) => {
-  list.fail('updateItemFailure:', error)
+  view.failureMessage('updateItemFailure:', error)
 }
 
 // deleteItemSuccess(response)
 //  successful update delete
 
 const deleteItemSuccess = (response) => {
-  list.succeed('deleteItemSuccess:', undefined)
+  view.successMessage('deleteItemSuccess:', undefined)
 }
 
 // deleteItemFailure(error)
 //  error from update delete
 
 const deleteItemFailure = (error) => {
-  list.fail('deleteItemFailure:', error)
+  view.failureMessage('deleteItemFailure:', error)
 }
 
 module.exports = {

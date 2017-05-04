@@ -8,7 +8,7 @@ const ui = require('./ui')
 //    handle form submission for get items index event
 
 const onGetItems = function (event) {
-  event.preventDefault()
+  // event.preventDefault()
 
   api.getItems()
     .then(ui.getItemsSuccess)
@@ -60,10 +60,26 @@ const onUpdateItem = function (event) {
 
 const onDeleteItem = function (event) {
   event.preventDefault()
-  const data = getFormFields(event.target)
+  // const data = getFormFields(event.target)
+
+  const data = {
+    item: {
+      id: $(event.target).closest('.panel').data('id')
+    }
+  }
+
+  // debugger
+  // api.deleteItem(data)
+  //   .then(ui.deleteItemSuccess)
+  //   .catch(ui.deleteItemFailure)
 
   api.deleteItem(data)
     .then(ui.deleteItemSuccess)
+    .then(() => {
+      api.getItems()
+        .then(ui.getItemsSuccess)
+        .catch(ui.getItemsFailure)
+    })
     .catch(ui.deleteItemFailure)
 }
 
@@ -75,9 +91,11 @@ const addHandlers = () => {
   $('.content-div').on('submit', '#get-item', onGetItem)
   $('.content-div').on('submit', '#create-item', onCreateItem)
   $('.content-div').on('submit', '#update-item', onUpdateItem)
+  $('.content-div').on('click', '.delete-item-link', onDeleteItem)
   $('.content-div').on('submit', '#delete-item', onDeleteItem)
 }
 
 module.exports = {
+  onGetItems,
   addHandlers
 }

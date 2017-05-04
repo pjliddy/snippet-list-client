@@ -1,58 +1,58 @@
 'use strict'
 
 // store accesses the client global store object
-const store = require('../store.js')
-const list = require('../app.js')
+const store = require('../store')
+const view = require('../views')
 
 // signUpSuccess(response)
 //  successful new user sign up
 
 const signUpSuccess = (response) => {
-  list.succeed('signUpSuccess:', response)
+  view.successMessage('signUpSuccess:', response)
 }
 
 // signUpFailure(error)
 //  error from new user sign up
 
 const signUpFailure = (error) => {
-  list.fail('signUpFailure:', error)
+  view.failureMessage('signUpFailure:', error)
 }
 
 // signInSuccess(response)
 //  successful user sign in
 
 const signInSuccess = (response) => {
-  list.succeed('signInSuccess:', response)
+  view.setPrivateMode()
   store.user = response.user
-  list.setPrivateMode()
+  view.successMessage('signInSuccess:', response)
 }
 
 // signInFailure(error)
 //  error from user sign in
 
 const signInFailure = (error) => {
-  list.fail('signInFailure:', error)
+  view.failureMessage('signInFailure:', error)
 }
 
 // changePasswordSuccess(response)
 //  successful password change
 
 const changePasswordSuccess = (response) => {
-  list.succeed('changePasswordSuccess:', undefined)
+  view.successMessage('changePasswordSuccess:', undefined)
 }
 
 // changePasswordFailure(error)
 //  error from password change
 
 const changePasswordFailure = (error) => {
-  list.fail('changePasswordFailure:', error)
+  view.failureMessage('changePasswordFailure:', error)
 }
 
 // signOutSuccess(response)
 //  successful user sign out
 
 const signOutSuccess = (response) => {
-  list.setPublicMode()
+  view.setPublicMode()
   // list.succeed('signOutSuccess:')
   store.user = null
 }
@@ -61,7 +61,7 @@ const signOutSuccess = (response) => {
 //  error from user sign out
 
 const signOutFailure = (error) => {
-  list.fail('signOutFailure:', error)
+  view.failureMessage.fail('signOutFailure:', error)
 }
 
 module.exports = {
