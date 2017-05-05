@@ -14,19 +14,12 @@ const clearConsole = () => {
   $('.console').html('')
 }
 
-// const itemEvents = require('./items/events')
-
 const setPublicMode = function () {
   const navTemplate = require('./templates/nav-public.handlebars')
   const contentTemplate = require('./templates/auth-forms.handlebars')
-  $('.content-div').html(contentTemplate())
-  $('.navbar-div').html(navTemplate())
+  renderView('.content-div', contentTemplate())
+  renderView('.navbar-div', navTemplate())
   clearConsole()
-}
-
-const setPrivateMode = function () {
-  const navTemplate = require('./templates/nav-private.handlebars')
-  $('.navbar-div').html(navTemplate())
 }
 
 const renderView = function (element, content) {
@@ -37,10 +30,19 @@ const appendView = function (element, content) {
   $(element).append(content)
 }
 
-const newItemForm = function () {
+const setPrivateMode = function () {
+  const navTemplate = require('./templates/nav-private.handlebars')
+  renderView('.navbar-div', navTemplate())
+//   $('.navbar-div').html(navTemplate())
+}
+
+const newItem = function () {
   const contentTemplate = require('./templates/new-item.handlebars')
   appendView('.item-grid', contentTemplate())
-  // $('.content-div').html(contentTemplate())
+}
+
+const cancelNewItem = function () {
+  $('.new-item').remove()
 }
 
 module.exports = {
@@ -51,5 +53,6 @@ module.exports = {
   setPrivateMode,
   renderView,
   appendView,
-  newItemForm
+  newItem,
+  cancelNewItem
 }

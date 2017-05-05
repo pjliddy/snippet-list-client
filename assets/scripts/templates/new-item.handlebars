@@ -1,16 +1,21 @@
-<div class="col-sm-6 col-md-4">
-  <div class="panel panel-default" data-id="{{item.id}}">
-    <div class="panel-heading">
-      <h3 class="panel-title pull-left">New Item Title</h3>
-      <div class="clearfix"></div>
+<div class="col-sm-6 col-md-4 new-item">
+  <div class="panel panel-default">
+    <form id="create-item" class="form">
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="create-item-title" class="sr-only">Title</label>
+          <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
+        </div>
+        <div class="form-group">
+          <label for="create-item-body" class="sr-only">Body</label>
+          <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" rows="3"></textarea>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <a href="#" class="panel-right btn btn-link pull-left" id="cancel-create-item">Cancel <span class="glyphicon glyphicon-remove"></span></a>
+        <button class="btn btn-link pull-right" type="submit">Save <span class="glyphicon glyphicon-ok"></span></button>
+        <div class="clearfix"></div>
+      </div>
     </div>
-    <div class="panel-body">
-      new item content
-    </div>
-    <div class="panel-footer">
-      <a href="#" class="panel-right btn btn-link pull-left">Cancel <span class="glyphicon glyphicon-remove"></span></a>
-        <button class="btn btn-link pull-right">Save <span class="glyphicon glyphicon-ok"></span></button>
-      <div class="clearfix"></div>
-    </div>
-  </div>
+  </form>
 </div>

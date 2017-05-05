@@ -39,6 +39,11 @@ const onCreateItem = function (event) {
 
   api.createItem(data)
     .then(ui.createItemSuccess)
+    .then(() => {
+      api.getItems()
+        .then(ui.getItemsSuccess)
+        .catch(ui.getItemsFailure)
+    })
     .catch(ui.createItemFailure)
 }
 
@@ -88,8 +93,8 @@ const addHandlers = () => {
   $('.content-div').on('submit', '#create-item', onCreateItem)
   $('.content-div').on('submit', '#update-item', onUpdateItem)
   $('.content-div').on('click', '.delete-item-link', onDeleteItem)
-  $('.navbar-div').on('click', '#new-item-link', view.newItemForm)
-  // $('.content-div').on('submit', '#delete-item', onDeleteItem)
+  $('.navbar-div').on('click', '#new-item-link', view.newItem)
+  $('.content-div').on('click', '#cancel-create-item', view.cancelNewItem)
 }
 
 module.exports = {
