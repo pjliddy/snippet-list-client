@@ -63,12 +63,15 @@ const editItem = function (event) {
 }
 
 const cancelEditItem = function (event) {
+  // Object {id: 54, title: "Test", body: "Cleaned up UI. Good Stuff. Yay"}
   const item = {
-    id: $(event.target).closest('.panel').data('id'),
-    title: $(event.target).closest('.panel')
-      .find('#update-item-title').data('content'),
-    body: $(event.target).closest('.panel')
-      .find('#update-item-body').data('content')
+    item: {
+      id: $(event.target).closest('.panel').data('id'),
+      title: $(event.target).closest('.panel')
+        .find('#update-item-title').data('content'),
+      body: $(event.target).closest('.panel')
+        .find('#update-item-body').data('content')
+    }
   }
 
   const viewTemplate = require('./templates/show-item.handlebars')
