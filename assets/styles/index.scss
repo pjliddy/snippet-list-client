@@ -1,16 +1,12 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-.tab-content .panel {
-  border-top: 0;
+.nav-tabs {
+  border-bottom: 0;
 }
 // dropdown login form CSS
 
 .dropdown-menu {
   min-width: 250px;
   padding: 14px 14px 0;
-}
-
-.panel-title {
-  // line-height: 33px;
 }

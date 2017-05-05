@@ -1,13 +1,13 @@
 <div class="row item-grid">
   {{#each items as |item|}}
-    <div class="col-sm-6 col-md-4">
+    <div class="col-sm-6 col-md-4 show-item">
       <div class="panel panel-default" data-id="{{item.id}}">
         <div class="panel-body">
-          <h4>{{item.title}}</h3>
-          {{item.body}}
+          <h4 class="item-title">{{item.title}}</h4>
+          <div class="item-body">{{item.body}}</div>
         </div>
         <div class="panel-footer">
-          <button class="panel-right btn btn-link pull-left">Edit <span class="glyphicon glyphicon-pencil"></span></button>
+          <button class="btn btn-link edit-item-link">Edit <span class="glyphicon glyphicon-pencil"></span></button>
           <button class="btn btn-link pull-right delete-item-link">Delete <span class="glyphicon glyphicon-trash"></span></button>
           <div class="clearfix"></div>
         </div>
@@ -33,18 +33,14 @@
     </form>
   </div>
 
-  <div class="col-sm-6">
+  <!-- <div class="col-sm-6"> -->
     <!-- PATCH	/items/:id	items#update -->
-    <form id="update-item" class="form">
+    <!-- <form id="update-item" class="form">
       <fieldset>
         <legend>Update an Item</legend>
         <div class="form-group">
           <label for="update-item-id" class="sr-only">Item ID</label>
           <input type="number" class="form-control" name="item[id]" id="update-item-id" placeholder="item_id" value="" min="1">
-        </div>
-        <div class="form-group">
-          <label for="update-item-user-id" class="sr-only">User ID</label>
-          <input type="text" class="form-control" name="item[user_id]" id="update-item-user-id" placeholder="user_id" value="">
         </div>
         <div class="form-group">
           <label for="update-item-title" class="sr-only">Title</label>
@@ -57,7 +53,7 @@
         <button type="button" class="btn btn-link" id="update-item-cancel">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
-    </form>
+    </form> -->
   </div>
   <div class="clearfix"></div>
 

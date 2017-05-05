@@ -54,6 +54,7 @@ const onCreateItem = function (event) {
 const onUpdateItem = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
+  data.item.id = $(event.target).closest('.panel').data('id')
 
   api.updateItem(data)
     .then(ui.updateItemSuccess)
@@ -93,8 +94,11 @@ const addHandlers = () => {
   $('.content-div').on('submit', '#create-item', onCreateItem)
   $('.content-div').on('submit', '#update-item', onUpdateItem)
   $('.content-div').on('click', '.delete-item-link', onDeleteItem)
+  $('.content-div').on('click', '.edit-item-link', view.editItem)
   $('.navbar-div').on('click', '#new-item-link', view.newItem)
-  $('.content-div').on('click', '#cancel-create-item', view.cancelNewItem)
+  $('.content-div').on('click', '#create-item-cancel', view.cancelNewItem)
+  $('.content-div').on('click', '#update-item-cancel', view.cancelEditItem)
+  $('.content-div').on('click', '#save-edit-item', onUpdateItem)
 }
 
 module.exports = {
