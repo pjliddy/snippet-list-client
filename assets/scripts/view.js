@@ -44,15 +44,19 @@ const setPrivateMode = function () {
 }
 
 const newItem = function () {
+  // disable Add Snippet button
+  $('#new-item-link').addClass('.disabled').attr('disabled', true)
   const contentTemplate = require('./templates/new-item.handlebars')
   appendView('.item-grid', contentTemplate())
 }
 
 const cancelNewItem = function () {
+  // re-enable add snippet button
+  $('#new-item-link').removeClass('.disabled').attr('disabled', false)
   $('.new-item').remove()
 }
 
-const editItem = function (event) {
+const updateItem = function (event) {
   // get values from current item
   const item = {
     id: $(event.target).closest('.panel').data('id'),
@@ -61,16 +65,16 @@ const editItem = function (event) {
   }
 
   // change on-screen module from display to editable module
-  const editTemplate = require('./templates/edit-item.handlebars')
+  const updateTemplate = require('./templates/update-item.handlebars')
   const itemDiv = $(event.target).closest('.show-item')
-  replaceView(itemDiv, editTemplate(item))
+  replaceView(itemDiv, updateTemplate(item))
 
   // TO DO: ADD HANDLERS FOR CANCEL & SAVE FOR EDIT
 
   successMessage('Edit Item', item)
 }
 
-const cancelEditItem = function (event) {
+const cancelUpdate = function (event) {
   // Object {id: 54, title: "Test", body: "Cleaned up UI. Good Stuff. Yay"}
   const item = {
     item: {
@@ -83,20 +87,20 @@ const cancelEditItem = function (event) {
   }
 
   const viewTemplate = require('./templates/show-item.handlebars')
-  const itemDiv = $(event.target).closest('.edit-item')
+  const itemDiv = $(event.target).closest('.update-item')
   replaceView(itemDiv, viewTemplate(item))
 
   // back to display module
-  successMessage('Cancel Edit', item)
+  successMessage('Cancel Update', item)
 }
 
-const saveEditedItem = function (item) {
+const saveUpdate = function (item) {
   const viewTemplate = require('./templates/show-item.handlebars')
-  const itemDiv = $('.edit-item')
+  const itemDiv = $('.update-item')
   replaceView(itemDiv, viewTemplate(item))
 
   // back to display module
-  successMessage('Save Edit', item)
+  successMessage('Save Update', item)
 }
 
 const formAlert = function (form, field) {
@@ -120,8 +124,8 @@ module.exports = {
   appendView,
   newItem,
   cancelNewItem,
-  editItem,
-  cancelEditItem,
-  saveEditedItem,
+  updateItem,
+  cancelUpdate,
+  saveUpdate,
   formAlert
 }

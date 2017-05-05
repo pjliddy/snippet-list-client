@@ -44,23 +44,7 @@ const onSignUp = function (event) {
           .catch(ui.signInFailure)
       })
       .catch(ui.signUpFailure)
-
-      // api.signIn(data)
-      //   .then(ui.signInSuccess)
-      //   .then(() => {
-      //     itemApi.getItems()
-      //       .then(itemUi.getItemsSuccess)
-      //       .catch(itemUi.getItemsFailure)
-      //   })
-      //   .catch(ui.signInFailure)
   }
-  // if (data.credentials.password === data.credentials.password_confirmation) {
-  //   api.signUp(data)
-  //     .then(ui.signUpSuccess)
-  //     .catch(ui.signUpFailure)
-  // } else {
-  //   console.log('Passwords must match')
-  // }
 }
 
 // onSignIn()

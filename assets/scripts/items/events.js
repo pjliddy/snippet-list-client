@@ -20,14 +20,14 @@ const onGetItems = function (event) {
 //    handle form submission for get item event
 //    NOTE: REQUIRES INPUT FIELD VALIDATION
 
-const onGetItem = function (event) {
-  event.preventDefault()
-  const data = getFormFields(event.target)
-
-  api.getItem(data)
-    .then(ui.getItemSuccess)
-    .catch(ui.getItemFailure)
-}
+// const onGetItem = function (event) {
+//   event.preventDefault()
+//   const data = getFormFields(event.target)
+//
+//   api.getItem(data)
+//     .then(ui.getItemSuccess)
+//     .catch(ui.getItemFailure)
+// }
 
 // onCreateItem()
 //    handle form submission for create item event
@@ -89,16 +89,16 @@ const onDeleteItem = function (event) {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  // $('.content-div').on('submit', '#get-items', onGetItems)
-  $('.content-div').on('submit', '#get-item', onGetItem)
-  $('.content-div').on('submit', '#create-item', onCreateItem)
-  $('.content-div').on('submit', '#update-item', onUpdateItem)
-  $('.content-div').on('click', '.delete-item-link', onDeleteItem)
-  $('.content-div').on('click', '.edit-item-link', view.editItem)
+  // $('.content-div').on('submit', '#get-item', onGetItem)
   $('.navbar-div').on('click', '#new-item-link', view.newItem)
   $('.content-div').on('click', '#create-item-cancel', view.cancelNewItem)
-  $('.content-div').on('click', '#update-item-cancel', view.cancelEditItem)
-  $('.content-div').on('click', '#save-edit-item', onUpdateItem)
+  $('.content-div').on('submit', '#create-item', onCreateItem)
+
+  $('.content-div').on('click', '.edit-item-link', view.updateItem)
+  $('.content-div').on('click', '#update-item-cancel', view.cancelUpdate)
+  $('.content-div').on('submit', '#update-item', onUpdateItem)
+
+  $('.content-div').on('click', '.delete-item-link', onDeleteItem)
 }
 
 module.exports = {
