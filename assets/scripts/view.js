@@ -2,24 +2,20 @@
 
 const successMessage = function (msg, response) {
   console.log(`${msg}: ${JSON.stringify(response)}`)
-  $('.console').append(JSON.stringify(response) + '<br/>')
+  // $('.console').append(JSON.stringify(response) + '<br/>')
 }
 
 const failureMessage = function (msg, response) {
   console.error(`${msg}: ${JSON.stringify(response)}`)
-  $('.console').append(JSON.stringify(response) + '<br/>')
-}
-
-const clearConsole = () => {
-  $('.console').html('')
+  // $('.console').append(JSON.stringify(response) + '<br/>')
 }
 
 const setPublicMode = function () {
   const navTemplate = require('./templates/nav-public.handlebars')
+  renderView('.navbar-div', navTemplate())
+
   const contentTemplate = require('./templates/auth-forms.handlebars')
   renderView('.content-div', contentTemplate())
-  renderView('.navbar-div', navTemplate())
-  clearConsole()
 }
 
 const renderView = function (element, content) {
@@ -37,7 +33,6 @@ const replaceView = function (element, content) {
 const setPrivateMode = function () {
   const navTemplate = require('./templates/nav-private.handlebars')
   renderView('.navbar-div', navTemplate())
-//   $('.navbar-div').html(navTemplate())
 }
 
 const newItem = function () {
@@ -64,21 +59,38 @@ const editItem = function (event) {
 
   // TO DO: ADD HANDLERS FOR CANCEL & SAVE FOR EDIT
 
-  // ADD DATA-ITEM TO STORE ORIGINAL STATE OF ITEM BEING EDITED
-  // ADD DATA-ID
-
   successMessage('Edit Item', item)
 }
 
 const cancelEditItem = function (event) {
+  const item = {
+    id: $(event.target).closest('.panel').data('id'),
+    title: $(event.target).closest('.panel')
+      .find('#update-item-title').data('content'),
+    body: $(event.target).closest('.panel')
+      .find('#update-item-body').data('content')
+  }
+
+  const viewTemplate = require('./templates/show-item.handlebars')
+  const itemDiv = $(event.target).closest('.edit-item')
+  replaceView(itemDiv, viewTemplate(item))
+
   // back to display module
-  successMessage('Cancel Edit', {})
+  successMessage('Cancel Edit', item)
+}
+
+const saveEditedItem = function (item) {
+  const viewTemplate = require('./templates/show-item.handlebars')
+  const itemDiv = $('.edit-item')
+  replaceView(itemDiv, viewTemplate(item))
+
+  // back to display module
+  successMessage('Cancel Edit', item)
 }
 
 module.exports = {
   successMessage,
   failureMessage,
-  clearConsole,
   setPublicMode,
   setPrivateMode,
   renderView,
@@ -86,5 +98,6 @@ module.exports = {
   newItem,
   cancelNewItem,
   editItem,
-  cancelEditItem
+  cancelEditItem,
+  saveEditedItem
 }

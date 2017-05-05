@@ -51,6 +51,7 @@ const createItemFailure = (error) => {
 //  successful update item
 
 const updateItemSuccess = (response) => {
+  view.saveEditedItem(response)
   view.successMessage('updateItemSuccess:', response)
 }
 
