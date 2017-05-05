@@ -34,6 +34,10 @@ const appendView = function (element, content) {
   $(element).append(content)
 }
 
+const prependView = function (element, content) {
+  $(content).prependTo(element)
+}
+
 const replaceView = function (element, content) {
   $(element).replaceWith(content)
 }
@@ -45,14 +49,14 @@ const setPrivateMode = function () {
 
 const newItem = function () {
   // disable Add Snippet button
-  $('#new-item-link').addClass('.disabled').attr('disabled', true)
+  $('#new-item-link').addClass('.disabled').attr('disabled', true).prop('disabled', true)
   const contentTemplate = require('./templates/new-item.handlebars')
-  appendView('.item-grid', contentTemplate())
+  prependView('.item-grid', contentTemplate())
 }
 
 const cancelNewItem = function () {
   // re-enable add snippet button
-  $('#new-item-link').removeClass('.disabled').attr('disabled', false)
+  $('#new-item-link').removeClass('.disabled').attr('disabled', false).prop('disabled', false)
   $('.new-item').remove()
 }
 
@@ -122,6 +126,7 @@ module.exports = {
   setPrivateMode,
   renderView,
   appendView,
+  prependView,
   newItem,
   cancelNewItem,
   updateItem,
