@@ -31,6 +31,8 @@ const signInSuccess = (response) => {
 //  error from user sign in
 
 const signInFailure = (error) => {
+  view.formAlert('#sign-in', '#sign-in-password')
+
   view.failureMessage('signInFailure:', error)
 }
 

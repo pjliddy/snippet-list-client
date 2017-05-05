@@ -1,5 +1,13 @@
 'use strict'
 
+// message()
+// sets the html content of the message component in the game UI
+
+const message = function (msg) {
+  // $('.message').html(msg)
+  console.log(msg)
+}
+
 const successMessage = function (msg, response) {
   console.log(`${msg}: ${JSON.stringify(response)}`)
   // $('.console').append(JSON.stringify(response) + '<br/>')
@@ -88,10 +96,22 @@ const saveEditedItem = function (item) {
   replaceView(itemDiv, viewTemplate(item))
 
   // back to display module
-  successMessage('Cancel Edit', item)
+  successMessage('Save Edit', item)
+}
+
+const formAlert = function (form, field) {
+  $(form).find('.form-group').removeClass('has-warning has-feedback')
+  $(form).find('.form-group .form-control-feedback').remove()
+  $(form).find('.help-block').hide()
+
+  $(field).closest('.form-group').addClass('has-warning has-feedback')
+  const icon = `<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`
+  $(field).closest('.input-group').append(icon)
+  $(field).closest('.form-group').find('.help-block').show()
 }
 
 module.exports = {
+  message,
   successMessage,
   failureMessage,
   setPublicMode,
@@ -102,5 +122,6 @@ module.exports = {
   cancelNewItem,
   editItem,
   cancelEditItem,
-  saveEditedItem
+  saveEditedItem,
+  formAlert
 }
