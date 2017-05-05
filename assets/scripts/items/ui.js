@@ -1,6 +1,6 @@
 'use strict'
 
-const view = require('../views')
+const view = require('../view')
 
 // getItemsSuccess(response)
 //  successful item index

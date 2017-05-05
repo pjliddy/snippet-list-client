@@ -2,7 +2,7 @@
 
 // store accesses the client global store object
 const store = require('../store')
-const view = require('../views')
+const view = require('../view')
 
 // signUpSuccess(response)
 //  successful new user sign up

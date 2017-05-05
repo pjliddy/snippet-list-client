@@ -5,13 +5,13 @@ const config = require('./config')
 const itemEvents = require('./items/events')
 const authEvents = require('./auth/events')
 
-const views = require('./views')
+const view = require('./view')
 
 $(() => {
   setAPIOrigin(location, config)
   authEvents.addHandlers()
   itemEvents.addHandlers()
-  views.setPublicMode()
+  view.setPublicMode()
 })
 
 // use require with a reference to bundle the file and use it in this file

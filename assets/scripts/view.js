@@ -33,11 +33,23 @@ const renderView = function (element, content) {
   $(element).html(content)
 }
 
+const appendView = function (element, content) {
+  $(element).append(content)
+}
+
+const newItemForm = function () {
+  const contentTemplate = require('./templates/new-item.handlebars')
+  appendView('.item-grid', contentTemplate())
+  // $('.content-div').html(contentTemplate())
+}
+
 module.exports = {
   successMessage,
   failureMessage,
   clearConsole,
   setPublicMode,
   setPrivateMode,
-  renderView
+  renderView,
+  appendView,
+  newItemForm
 }

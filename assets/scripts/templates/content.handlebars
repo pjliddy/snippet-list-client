@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row item-grid">
   {{#each items as |item|}}
     <div class="col-sm-6 col-md-4">
       <div class="panel panel-default" data-id="{{item.id}}">
@@ -82,20 +82,6 @@
           <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3"></textarea>
         </div>
         <button type="button" class="btn btn-link" id="update-item-cancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </fieldset>
-    </form>
-  </div>
-  <div class="col-sm-6">
-    <!-- DELETE	/items/:id	items#destroy -->
-    <form id="delete-item" class="form-inline">
-      <fieldset>
-        <legend>Delete an Item</legend>
-        <div class="form-group">
-          <label for="delete-item-id" class="sr-only">Item ID</label>
-          <input type="number" class="form-control" name="item[id]" id="delete-item-id" placeholder="item_id" value="" min="1">
-        </div>
-        <button type="button" class="btn btn-link" id="delete-item-cancel">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </fieldset>
     </form>

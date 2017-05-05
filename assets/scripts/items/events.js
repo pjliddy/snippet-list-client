@@ -3,6 +3,7 @@
 const getFormFields = require(`../../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
+const view = require('../view')
 
 // onGetItems()
 //    handle form submission for get items index event
@@ -68,11 +69,6 @@ const onDeleteItem = function (event) {
     }
   }
 
-  // debugger
-  // api.deleteItem(data)
-  //   .then(ui.deleteItemSuccess)
-  //   .catch(ui.deleteItemFailure)
-
   api.deleteItem(data)
     .then(ui.deleteItemSuccess)
     .then(() => {
@@ -87,12 +83,13 @@ const onDeleteItem = function (event) {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  $('.content-div').on('submit', '#get-items', onGetItems)
+  // $('.content-div').on('submit', '#get-items', onGetItems)
   $('.content-div').on('submit', '#get-item', onGetItem)
   $('.content-div').on('submit', '#create-item', onCreateItem)
   $('.content-div').on('submit', '#update-item', onUpdateItem)
   $('.content-div').on('click', '.delete-item-link', onDeleteItem)
-  $('.content-div').on('submit', '#delete-item', onDeleteItem)
+  $('.navbar-div').on('click', '#new-item-link', view.newItemForm)
+  // $('.content-div').on('submit', '#delete-item', onDeleteItem)
 }
 
 module.exports = {
