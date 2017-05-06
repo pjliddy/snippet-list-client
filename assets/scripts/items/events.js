@@ -75,6 +75,20 @@ const onUpdateItem = function (event) {
   }
 }
 
+// onConfirmDeleteItem
+//    confirm user's intent to delete before calling API
+
+const onConfirmDeleteItem = function (event) {
+  // show the confirm delete modal
+  view.confirmDelete()
+
+  // if modal confirmed, delete item
+  $('#delete-modal-confirm').click(function () {
+    $('#delete-modal').modal('hide')
+    onDeleteItem(event)
+  })
+}
+
 // onDeleteItem()
 //    handle form submission for delete item event
 
@@ -85,6 +99,7 @@ const onDeleteItem = function (event) {
       id: $(event.target).closest('.panel').data('id')
     }
   }
+
   // prevent default form post
   event.preventDefault()
 
@@ -104,21 +119,21 @@ const onDeleteItem = function (event) {
 
 const addHandlers = () => {
   // new item (add snippet) link clicked
-  $('.navbar-div').on('click', '#new-item-link', view.newItem)
+  $('.navbar-div').on('click', '#new-item-link', view.showNewItem)
   // cancel link in new item form clicked
-  $('.content-div').on('click', '#create-item-cancel', view.clearNewItem)
+  $('.content-div').on('click', '#create-item-cancel', view.cancelNewItem)
   // create item form submitted
   $('.content-div').on('submit', '#create-item', onCreateItem)
 
   // edit item link clicked
-  $('.content-div').on('click', '.edit-item-link', view.updateItem)
+  $('.content-div').on('click', '.edit-item-link', view.showUpdateItem)
   // cancel link in update item form clicked
-  $('.content-div').on('click', '#update-item-cancel', view.cancelUpdate)
+  $('.content-div').on('click', '#update-item-cancel', view.cancelUpdateItem)
   // update item form submitted
   $('.content-div').on('submit', '#update-item', onUpdateItem)
 
   // delete item link clicked
-  $('.content-div').on('click', '.delete-item-link', onDeleteItem)
+  $('.content-div').on('click', '.delete-item-link', onConfirmDeleteItem)
 
   // get item form submitted -- not used
   // $('.content-div').on('submit', '#get-item', onGetItem)

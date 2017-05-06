@@ -1,7 +1,8 @@
 'use strict'
 
-// message()
-// sets the html content of the message component in the game UI
+//
+// debugging methods
+//
 
 const message = function (msg) {
   // $('.message').html(msg)
@@ -16,15 +17,9 @@ const failureMessage = function (msg, response) {
   console.error(`${msg}: ${JSON.stringify(response)}`)
 }
 
-const setPublicMode = function () {
-  closeAlert()
-
-  const navTemplate = require('./templates/nav-public.handlebars')
-  renderView('.navbar-div', navTemplate())
-
-  const contentTemplate = require('./templates/auth-forms.handlebars')
-  renderView('.content-div', contentTemplate())
-}
+//
+// view renderers
+//
 
 const renderView = function (element, content) {
   $(element).html(content)
@@ -41,8 +36,52 @@ const prependView = function (element, content) {
 const insertView = function (element, content) {
   $(element).before(content)
 }
+
 const replaceView = function (element, content) {
   $(element).replaceWith(content)
+}
+
+//
+// alert methods
+//
+
+// trigger form input validation alert
+
+const formAlert = function (form, field) {
+  $(form).find('.form-group').removeClass('has-warning has-feedback')
+  $(form).find('.form-group .form-control-feedback').remove()
+  $(form).find('.help-block').hide()
+
+  $(field).closest('.form-group').addClass('has-warning has-feedback')
+  const icon = `<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`
+  $(field).closest('.input-group').append(icon)
+  $(field).closest('.form-group').find('.help-block').show()
+}
+
+// show global alert box
+
+const showAlert = function (message) {
+  const alertTemplate = require('./templates/alert-info.handlebars')
+  const content = alertTemplate({ message: message })
+  insertView('.content-div', content)
+}
+
+// close global alert box
+
+const closeAlert = function () {
+  $('.alert').alert('close')
+}
+
+//
+// switching public & private modes
+//
+
+const setPublicMode = function () {
+  closeAlert()
+  const navTemplate = require('./templates/nav-public.handlebars')
+  const contentTemplate = require('./templates/auth-forms.handlebars')
+  renderView('.navbar-div', navTemplate())
+  renderView('.content-div', contentTemplate())
 }
 
 const setPrivateMode = function () {
@@ -50,14 +89,22 @@ const setPrivateMode = function () {
   renderView('.navbar-div', navTemplate())
 }
 
+//
+//  Item methods
+//
+
+// show all items
+
 const showItems = function (data) {
-  clearNewItem()
+  cancelNewItem()
   const contentTemplate = require('./templates/content.handlebars')
   const content = contentTemplate({ items: data })
   renderView('.content-div', content)
 }
 
-const newItem = function () {
+// show the new item form
+
+const showNewItem = function () {
   // disable Add Snippet button
   $('#new-item-link').addClass('.disabled')
   $('#new-item-link').attr('disabled', true)
@@ -67,7 +114,9 @@ const newItem = function () {
   prependView('.item-grid', contentTemplate())
 }
 
-const clearNewItem = function () {
+// cancel the new item form
+
+const cancelNewItem = function () {
   // re-enable add snippet button
   $('#new-item-link').removeClass('.disabled')
   $('#new-item-link').attr('disabled', false)
@@ -76,7 +125,20 @@ const clearNewItem = function () {
   $('.create-item').remove()
 }
 
-const updateItem = function (event) {
+// submit the new item form
+
+const saveUpdateItem = function (item) {
+  const viewTemplate = require('./templates/show-item.handlebars')
+  const itemDiv = $('.update-item')
+  replaceView(itemDiv, viewTemplate(item))
+
+  // back to display module
+  successMessage('Save Update', item)
+}
+
+// show the update item form
+
+const showUpdateItem = function (event) {
   // get values from current item
   const item = {
     id: $(event.target).closest('.panel').data('id'),
@@ -94,7 +156,9 @@ const updateItem = function (event) {
   successMessage('Edit Item', item)
 }
 
-const cancelUpdate = function (event) {
+// cancel the update item form
+
+const cancelUpdateItem = function (event) {
   // Object {id: 54, title: "Test", body: "Cleaned up UI. Good Stuff. Yay"}
   const item = {
     item: {
@@ -114,25 +178,7 @@ const cancelUpdate = function (event) {
   successMessage('Cancel Update', item)
 }
 
-const saveUpdate = function (item) {
-  const viewTemplate = require('./templates/show-item.handlebars')
-  const itemDiv = $('.update-item')
-  replaceView(itemDiv, viewTemplate(item))
-
-  // back to display module
-  successMessage('Save Update', item)
-}
-
-const formAlert = function (form, field) {
-  $(form).find('.form-group').removeClass('has-warning has-feedback')
-  $(form).find('.form-group .form-control-feedback').remove()
-  $(form).find('.help-block').hide()
-
-  $(field).closest('.form-group').addClass('has-warning has-feedback')
-  const icon = `<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`
-  $(field).closest('.input-group').append(icon)
-  $(field).closest('.form-group').find('.help-block').show()
-}
+// password changed successfully
 
 const changePasswordSuccess = function () {
   $('#change-password-nav').dropdown('toggle')
@@ -140,34 +186,24 @@ const changePasswordSuccess = function () {
   showAlert('Password changed.')
 }
 
-const showAlert = function (message) {
-  const alertTemplate = require('./templates/alert-info.handlebars')
-  const content = alertTemplate({ message: message })
-  insertView('.content-div', content)
-}
-
-const closeAlert = function () {
-  $('.alert').alert('close')
-}
-
 module.exports = {
   message,
   successMessage,
   failureMessage,
-  setPublicMode,
-  setPrivateMode,
   renderView,
   appendView,
   prependView,
   insertView,
-  showItems,
-  newItem,
-  clearNewItem,
-  updateItem,
-  cancelUpdate,
-  saveUpdate,
   formAlert,
-  changePasswordSuccess,
   showAlert,
-  closeAlert
+  closeAlert,
+  setPublicMode,
+  setPrivateMode,
+  showItems,
+  showNewItem,
+  cancelNewItem,
+  showUpdateItem,
+  cancelUpdateItem,
+  saveUpdateItem,
+  changePasswordSuccess
 }

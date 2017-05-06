@@ -8,7 +8,6 @@ const view = require('../view')
 
 const getItemsSuccess = (response) => {
   view.showItems(response.items)
-  // view.successMessage('getItemsSuccess:', response)
 }
 
 // getItemsFailure(error)
@@ -50,7 +49,7 @@ const createItemFailure = (error) => {
 //  successful update item
 
 const updateItemSuccess = (response) => {
-  view.saveUpdate(response)
+  view.saveUpdateItem(response)
   view.successMessage('updateItemSuccess:', response)
 }
 
