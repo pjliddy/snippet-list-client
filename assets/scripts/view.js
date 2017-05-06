@@ -1,128 +1,181 @@
 'use strict'
 
 //
-// debugging methods
+// VIEW RENDERING METHODS
 //
 
-const message = function (msg) {
-  // $('.message').html(msg)
-  console.log(msg)
-}
+// renderView(element, content)
+//    replaces element's html with content
 
-const successMessage = function (msg, response) {
-  console.log(`${msg}: ${JSON.stringify(response)}`)
-}
-
-const failureMessage = function (msg, response) {
-  console.error(`${msg}: ${JSON.stringify(response)}`)
-}
-
-//
-// view renderers
-//
-
-const renderView = function (element, content) {
+const renderView = (element, content) => {
   $(element).html(content)
 }
 
-const appendView = function (element, content) {
+// appendView(element, content)
+//    appends content to the end of element's html
+
+const appendView = (element, content) => {
   $(element).append(content)
 }
 
-const prependView = function (element, content) {
+// prependView(element, content)
+//    prepends content in front of element inside a common parent
+
+const prependView = (element, content) => {
   $(content).prependTo(element)
 }
 
-const insertView = function (element, content) {
+// insertView(element, content)
+//    inserts content before element's html
+
+const insertView = (element, content) => {
   $(element).before(content)
 }
 
-const replaceView = function (element, content) {
+// replaceView(element, content)
+//    replaces element with content
+
+const replaceView = (element, content) => {
   $(element).replaceWith(content)
 }
 
 //
-// alert methods
+// VALIDATION & ALERT METHODS
 //
 
-// trigger form input validation alert
+// formAlert(form, field)
+//    triggers form input validation alert
 
-const formAlert = function (form, field) {
+const formAlert = (form, field) => {
+  // clear all alert classes from inputs
   $(form).find('.form-group').removeClass('has-warning has-feedback')
+  // remove all alert class icons from inputs
   $(form).find('.form-group .form-control-feedback').remove()
+  // hide any visible help text
   $(form).find('.help-block').hide()
 
+  // apply alert classes to specfic input
   $(field).closest('.form-group').addClass('has-warning has-feedback')
-  const icon = `<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`
-  $(field).closest('.input-group').append(icon)
+  // add alert icon to specific input
+  $(field).closest('.input-group').append(`<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`)
+  // show help text for specific input
   $(field).closest('.form-group').find('.help-block').show()
 }
 
-// show global alert box
+// showAlert(mode, message)
+//    displays global alert box for info or warning
 
-const showAlert = function (message) {
-  const alertTemplate = require('./templates/alert-info.handlebars')
+const showAlert = function (mode, message) {
+  let alertTemplate
+  // render handlebars template with message
+  if (mode === `error`) {
+    alertTemplate = require('./templates/alert-error.handlebars')
+  } else {
+    alertTemplate = require('./templates/alert-info.handlebars')
+  }
   const content = alertTemplate({ message: message })
-  insertView('.content-div', content)
+
+  // if there's already an alert
+  if ($('.alert').length) {
+    // replace the existing alert
+    replaceView('.alert', content)
+  } else {
+    // insert a new alert
+    insertView('.content-div', content)
+  }
 }
 
-// close global alert box
+// closeError()
+//  close global error box but not info alerts
+
+const closeError = function () {
+  $('.alert-danger').alert('close')
+}
+
+// closeAlert()
+//   close all global alert boxes
 
 const closeAlert = function () {
   $('.alert').alert('close')
 }
 
-// confirm delete modal
+// confirmDelete(id)
+//    presents a modal dialog to confirm user's action to delete an item
 
-const confirmDelete = function () {
+const confirmDelete = function (id) {
+  // render handlebars template with data-id for item
   const contentTemplate = require('./templates/confirm-delete.handlebars')
-  const content = contentTemplate()
-  appendView('body', content)
+  const content = contentTemplate({id: id})
+
+  // if there's already a modal
+  if ($('#delete-modal').length) {
+    // replace the existing modal
+    replaceView('#delete-modal', content)
+  } else {
+    // insert a new alert
+    appendView('body', content)
+  }
+
+  // show the hidden modal
   $('#delete-modal').modal('show')
 }
+
 //
-// switching public & private modes
+//  PUBLIC AND PRIVATE MODES
 //
+
+//  setPublicMode()
+//    set public mode for navbar and content area
 
 const setPublicMode = function () {
   closeAlert()
+  // render handlebars template for public nav
   const navTemplate = require('./templates/nav-public.handlebars')
-  const contentTemplate = require('./templates/auth-forms.handlebars')
   renderView('.navbar-div', navTemplate())
+  // render handlebars template for sign-in/sign-up forms
+  const contentTemplate = require('./templates/auth-forms.handlebars')
   renderView('.content-div', contentTemplate())
 }
 
+//  setPrivateMode()
+//    set private mode for navbar and content area
+
 const setPrivateMode = function () {
+  // render handlebars template for private nav
   const navTemplate = require('./templates/nav-private.handlebars')
   renderView('.navbar-div', navTemplate())
 }
 
 //
-//  Item methods
+//  ITEM METHODS
 //
 
-// show all items
+//  showItems(data)
+//    show all items for current user
 
 const showItems = function (data) {
-  cancelNewItem()
+  // render handlebars template for private nav
   const contentTemplate = require('./templates/content.handlebars')
   const content = contentTemplate({ items: data })
   renderView('.content-div', content)
 }
 
-// show the new item form
+//  showNewItem()
+//    show the new item form
 
 const showNewItem = function () {
-  // disable Add Snippet button
+  // disable Add Snippet button so only one new item dialog can be open
   $('#new-item-link').addClass('.disabled')
   $('#new-item-link').attr('disabled', true)
   $('#new-item-link').prop('disabled', true)
 
+  // render handlebars template for new item form
   const contentTemplate = require('./templates/new-item.handlebars')
   prependView('.item-grid', contentTemplate())
 }
 
-// cancel the new item form
+//  cancelNewItem()
+//    cancel the new item form
 
 const cancelNewItem = function () {
   // re-enable add snippet button
@@ -130,44 +183,42 @@ const cancelNewItem = function () {
   $('#new-item-link').attr('disabled', false)
   $('#new-item-link').prop('disabled', false)
 
+  // clear new item form element from DOM
   $('.create-item').remove()
 }
 
-// submit the new item form
-
-const saveUpdateItem = function (item) {
-  const viewTemplate = require('./templates/show-item.handlebars')
-  const itemDiv = $('.update-item')
-  replaceView(itemDiv, viewTemplate(item))
-
-  // back to display module
-  successMessage('Save Update', item)
-}
-
-// show the update item form
+//  showUpdateItem(event)
+//    show the update item form
 
 const showUpdateItem = function (event) {
-  // get values from current item
+  // store values from current item to store (for cancel)
   const item = {
     id: $(event.target).closest('.panel').data('id'),
     title: $(event.target).closest('.panel').find('.item-title').text(),
     body: $(event.target).closest('.panel').find('.item-body').html()
   }
 
-  // change on-screen module from display to editable module
+  // render handlebars template for edit item form
   const updateTemplate = require('./templates/update-item.handlebars')
   const itemDiv = $(event.target).closest('.show-item')
   replaceView(itemDiv, updateTemplate(item))
-
-  // TO DO: ADD HANDLERS FOR CANCEL & SAVE FOR EDIT
-
-  successMessage('Edit Item', item)
 }
 
-// cancel the update item form
+//  saveUpdateItem(item)
+//    change from edit to view mode
+
+const saveUpdateItem = function (item) {
+  // render handlebars template to show new item
+  const viewTemplate = require('./templates/show-item.handlebars')
+  const itemDiv = $('.update-item')
+  replaceView(itemDiv, viewTemplate(item))
+}
+
+// cancelUpdateItem(event)
+//    cancel the update item form
 
 const cancelUpdateItem = function (event) {
-  // Object {id: 54, title: "Test", body: "Cleaned up UI. Good Stuff. Yay"}
+  // get original item data
   const item = {
     item: {
       id: $(event.target).closest('.panel').data('id'),
@@ -178,26 +229,25 @@ const cancelUpdateItem = function (event) {
     }
   }
 
+  // render handlebars template for original data view
   const viewTemplate = require('./templates/show-item.handlebars')
   const itemDiv = $(event.target).closest('.update-item')
   replaceView(itemDiv, viewTemplate(item))
-
-  // back to display module
-  successMessage('Cancel Update', item)
 }
 
-// password changed successfully
+//  showChangePasswordSuccess()
+//    password changed successfully
 
-const changePasswordSuccess = function () {
+const showChangePasswordSuccess = function () {
+  // collapse change password dropdown
   $('#change-password-nav').dropdown('toggle')
+  // clear change password form fields
   $('#change-password input').val('')
-  showAlert('Password changed.')
+  // display successful alert message
+  showAlert('info', 'Password changed.')
 }
 
 module.exports = {
-  message,
-  successMessage,
-  failureMessage,
   renderView,
   appendView,
   prependView,
@@ -205,6 +255,7 @@ module.exports = {
   formAlert,
   showAlert,
   closeAlert,
+  closeError,
   confirmDelete,
   setPublicMode,
   setPrivateMode,
@@ -212,7 +263,7 @@ module.exports = {
   showNewItem,
   cancelNewItem,
   showUpdateItem,
-  cancelUpdateItem,
   saveUpdateItem,
-  changePasswordSuccess
+  cancelUpdateItem,
+  showChangePasswordSuccess
 }

@@ -1,88 +1,55 @@
 'use strict'
 
-// view accesses the view controller methods
+//  view controller methods
 const view = require('../view')
 
-// getItemsSuccess(response)
-//  successful item index
+//  getItemsSuccess(response)
+//    successful item index
 
 const getItemsSuccess = (response) => {
   view.showItems(response.items)
 }
 
-// getItemsFailure(error)
-//  error from item index
+//  getItemsFailure()
+//    error from item index
 
-const getItemsFailure = (error) => {
-  view.failureMessage('getItemsFailure:', error)
+const getItemsFailure = () => {
+  view.showAlert(`error`, `Hmmm. Couldn't get your list of items...`)
 }
 
-// getItemSuccess(response)
-//  successful show item
+//  createItemFailure()
+//    error from create item
 
-const getItemSuccess = (response) => {
-  view.successMessage('getItemSuccess:', response)
+const createItemFailure = () => {
+  view.showAlert(`error`, `There is a problem creating your snippet.`)
 }
 
-// getItemFailure(error)
-//  error from show item
-
-const getItemFailure = (error) => {
-  view.failureMessage('getItemFailure:', error)
-}
-
-// createItemSuccess(response)
-//  successful create item
-
-const createItemSuccess = (response) => {
-  view.successMessage('createItemSuccess:', response)
-}
-
-// createItemFailure(error)
-//  error from create item
-
-const createItemFailure = (error) => {
-  view.failureMessage('createItemFailure:', error)
-}
-
-// updateItemSuccess(response)
-//  successful update item
+//  updateItemSuccess(response)
+//    successful update item
 
 const updateItemSuccess = (response) => {
   view.saveUpdateItem(response)
-  view.successMessage('updateItemSuccess:', response)
 }
 
-// updateItemFailure(error)
-//  error from update item
+//  updateItemFailure()
+//    error from update item
 
-const updateItemFailure = (error) => {
-  view.failureMessage('updateItemFailure:', error)
+const updateItemFailure = () => {
+  view.showAlert(`error`, `There is a problem saving your updates.`)
 }
 
-// deleteItemSuccess(response)
-//  successful update delete
+//  deleteItemFailure()
+//    error from delete item
 
-const deleteItemSuccess = (response) => {
-  view.successMessage('deleteItemSuccess:', undefined)
-}
-
-// deleteItemFailure(error)
-//  error from update delete
-
-const deleteItemFailure = (error) => {
-  view.failureMessage('deleteItemFailure:', error)
+const deleteItemFailure = () => {
+  view.showAlert(`error`, `There is a problem deleting your snippet.`)
 }
 
 module.exports = {
   getItemsSuccess,
   getItemsFailure,
-  getItemSuccess,
-  getItemFailure,
-  createItemSuccess,
   createItemFailure,
   updateItemSuccess,
   updateItemFailure,
-  deleteItemSuccess,
   deleteItemFailure
 }

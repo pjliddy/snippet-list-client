@@ -1,71 +1,66 @@
 'use strict'
 
-// store accesses the client global store object
+// global store object
 const store = require('../store')
-// view accesses the view controller methods
+// view controller methods
 const view = require('../view')
 
-// signUpSuccess(response)
-//  successful new user sign up
+// signUpSuccess()
+//    successful new user sign up
 
-const signUpSuccess = (response) => {
-  view.successMessage('signUpSuccess:', response)
+const signUpSuccess = () => {
+  view.showAlert(`info`, `Welcome to your new Snippet List!`)
 }
 
-// signUpFailure(error)
-//  error from new user sign up
+// signUpFailure()
+//    error from new user sign up
 
-const signUpFailure = (error) => {
-  view.failureMessage('signUpFailure:', error)
+const signUpFailure = () => {
+  view.showAlert(`error`, `No dice. Something went wrong creating your account.`)
 }
 
 // signInSuccess(response)
-//  successful user sign in
+//    successful user sign in
 
 const signInSuccess = (response) => {
   store.user = response.user
   view.setPrivateMode()
-  view.successMessage('signInSuccess:', response)
 }
 
-// signInFailure(error)
-//  error from user sign in
+// signInFailure()
+//    error from user sign in
 
-const signInFailure = (error) => {
+const signInFailure = () => {
   view.formAlert('#sign-in', '#sign-in-password')
-
-  view.failureMessage('signInFailure:', error)
 }
 
-// changePasswordSuccess(response)
-//  successful password change
+// changePasswordSuccess()
+//    successful password change
 
-const changePasswordSuccess = (response) => {
-  view.changePasswordSuccess()
-  // view.successMessage('changePasswordSuccess:', undefined)
+const changePasswordSuccess = () => {
+  view.showChangePasswordSuccess()
 }
 
-// changePasswordFailure(error)
-//  error from password change
+// changePasswordFailure()
+//    error from password change
 
-const changePasswordFailure = (error) => {
-  view.failureMessage('changePasswordFailure:', error)
+const changePasswordFailure = () => {
+  view.showAlert(`error`, `For highly complex reasons, your password couldn't be changed.`)
 }
 
-// signOutSuccess(response)
-//  successful user sign out
+// signOutSuccess()
+//    successful user sign out
 
-const signOutSuccess = (response) => {
+const signOutSuccess = () => {
   store.user = null
   view.setPublicMode()
-  // list.succeed('signOutSuccess:')
 }
 
 // signOutFailure(error)
-//  error from user sign out
+//    error from user sign out
 
-const signOutFailure = (error) => {
-  view.failureMessage.fail('signOutFailure:', error)
+const signOutFailure = () => {
+  view.showAlert(`error`, `Oops. You couldn't be signed out.`)
 }
 
 module.exports = {

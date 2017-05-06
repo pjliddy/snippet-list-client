@@ -1,13 +1,15 @@
 'use strict'
 
+// returns values in a set of form fields as a data object
 const getFormFields = require('../../../lib/get-form-fields')
-const view = require('../view')
-
+// api and ui methods for authentication
 const authApi = require('./api')
 const authUi = require('./ui')
-
+// api and ui methods for items
 const itemApi = require('../items/api')
 const itemUi = require('../items/ui')
+// view controller methods
+const view = require('../view')
 
 // onSignUp()
 //    handle form submission for user sign up event
@@ -126,6 +128,8 @@ const addHandlers = () => {
   $('.content-div').on('show.bs.tab', 'a[data-toggle="tab"]', function (event) {
     // clear fields from previous active tab
     $($(event.relatedTarget).attr('href')).find('.form-control').val('')
+    // close any errors before proceeding
+    view.closeError()
   })
 }
 

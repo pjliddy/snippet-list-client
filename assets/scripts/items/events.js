@@ -1,33 +1,21 @@
 'use strict'
 
+// returns values in a set of form fields as a data object
 const getFormFields = require(`../../../lib/get-form-fields`)
+// api and ui methods for items
 const api = require('./api')
 const ui = require('./ui')
+// view controller methods
 const view = require('../view')
 
 // onGetItems()
 //    handle form submission for get items index event
 
-const onGetItems = function (event) {
-  // event.preventDefault()
-
+const onGetItems = function () {
   api.getItems()
     .then(ui.getItemsSuccess)
     .catch(ui.getItemsFailure)
 }
-
-// onGetItem()
-//    handle form submission for get item event
-//    not in use
-//
-// const onGetItem = function (event) {
-//   event.preventDefault()
-//   const data = getFormFields(event.target)
-//
-//   api.getItem(data)
-//     .then(ui.getItemSuccess)
-//     .catch(ui.getItemFailure)
-// }
 
 // onCreateItem()
 //    handle form submission for create item event
@@ -44,7 +32,6 @@ const onCreateItem = function (event) {
   } else {
     // make API calls and set up handlers for callbacks
     api.createItem(data)
-      .then(ui.createItemSuccess)
       .then(() => {
         api.getItems()
           .then(ui.getItemsSuccess)
@@ -79,24 +66,28 @@ const onUpdateItem = function (event) {
 //    confirm user's intent to delete before calling API
 
 const onConfirmDeleteItem = function (event) {
-  // show the confirm delete modal
-  view.confirmDelete()
+  // get the item id
+  const id = $(event.target).closest('.panel').data('id')
+  // manage the confirm delete modal
+  view.confirmDelete(id)
 
-  // if modal confirmed, delete item
-  $('#delete-modal-confirm').click(function () {
+  // if modal confirms delete item
+  $('#delete-modal-confirm').on('click', () => {
+    // hide modal
     $('#delete-modal').modal('hide')
-    onDeleteItem(event)
+    // make delete item api call
+    onDeleteItem(id)
   })
 }
 
 // onDeleteItem()
 //    handle form submission for delete item event
 
-const onDeleteItem = function (event) {
+const onDeleteItem = function (itemId) {
   // create data object from clicked item
   const data = {
     item: {
-      id: $(event.target).closest('.panel').data('id')
+      id: itemId
     }
   }
 
@@ -105,7 +96,6 @@ const onDeleteItem = function (event) {
 
   // make API calls and set up handlers for callbacks
   api.deleteItem(data)
-    .then(ui.deleteItemSuccess)
     .then(() => {
       api.getItems()
         .then(ui.getItemsSuccess)
@@ -138,6 +128,19 @@ const addHandlers = () => {
   // get item form submitted -- not used
   // $('.content-div').on('submit', '#get-item', onGetItem)
 }
+
+// onGetItem()
+//    handle form submission for get item event
+//    not in use
+//
+// const onGetItem = function (event) {
+//   event.preventDefault()
+//   const data = getFormFields(event.target)
+//
+//   api.getItem(data)
+//     .then(ui.getItemSuccess)
+//     .catch(ui.getItemFailure)
+// }
 
 module.exports = {
   onGetItems,
