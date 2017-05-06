@@ -37,14 +37,18 @@ const onCreateItem = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
 
-  api.createItem(data)
-    .then(ui.createItemSuccess)
-    .then(() => {
-      api.getItems()
-        .then(ui.getItemsSuccess)
-        .catch(ui.getItemsFailure)
-    })
-    .catch(ui.createItemFailure)
+  if (!data.item.title) {
+    view.formAlert('#new-item', '#create-item-title')
+  } else {
+    api.createItem(data)
+      .then(ui.createItemSuccess)
+      .then(() => {
+        api.getItems()
+          .then(ui.getItemsSuccess)
+          .catch(ui.getItemsFailure)
+      })
+      .catch(ui.createItemFailure)
+  }
 }
 
 // onUpdateItem()
@@ -91,7 +95,7 @@ const onDeleteItem = function (event) {
 const addHandlers = () => {
   // $('.content-div').on('submit', '#get-item', onGetItem)
   $('.navbar-div').on('click', '#new-item-link', view.newItem)
-  $('.content-div').on('click', '#create-item-cancel', view.cancelNewItem)
+  $('.content-div').on('click', '#create-item-cancel', view.clearNewItem)
   $('.content-div').on('submit', '#create-item', onCreateItem)
 
   $('.content-div').on('click', '.edit-item-link', view.updateItem)

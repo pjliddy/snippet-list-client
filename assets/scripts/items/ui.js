@@ -6,9 +6,7 @@ const view = require('../view')
 //  successful item index
 
 const getItemsSuccess = (response) => {
-  const contentTemplate = require('../templates/content.handlebars')
-  const content = contentTemplate({ items: response.items })
-  view.renderView('.content-div', content)
+  view.showItems(response.items)
   // view.successMessage('getItemsSuccess:', response)
 }
 
@@ -51,7 +49,7 @@ const createItemFailure = (error) => {
 //  successful update item
 
 const updateItemSuccess = (response) => {
-  view.saveEditedItem(response)
+  view.saveUpdate(response)
   view.successMessage('updateItemSuccess:', response)
 }
 

@@ -1,11 +1,17 @@
-<div class="col-sm-6 col-md-4 new-item">
+<div class="col-sm-6 col-md-4 create-item">
   <div class="panel panel-default">
     <form id="create-item" class="form">
       <div class="panel-body">
+
+
         <div class="form-group">
           <label for="create-item-title" class="sr-only">Title</label>
-          <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
+          <div class="input-group">
+            <input type="text" class="form-control" name="item[title]" id="create-item-title" placeholder="title" value="">
+          </div>
+          <p class="help-block">Please enter a snippet title.</p>
         </div>
+
         <div class="form-group">
           <label for="create-item-body" class="sr-only">Body</label>
           <textarea class="form-control" name="item[body]" id="create-item-body" placeholder="body" rows="3"></textarea>

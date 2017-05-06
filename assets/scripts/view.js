@@ -10,12 +10,10 @@ const message = function (msg) {
 
 const successMessage = function (msg, response) {
   console.log(`${msg}: ${JSON.stringify(response)}`)
-  // $('.console').append(JSON.stringify(response) + '<br/>')
 }
 
 const failureMessage = function (msg, response) {
   console.error(`${msg}: ${JSON.stringify(response)}`)
-  // $('.console').append(JSON.stringify(response) + '<br/>')
 }
 
 const setPublicMode = function () {
@@ -47,17 +45,30 @@ const setPrivateMode = function () {
   renderView('.navbar-div', navTemplate())
 }
 
+const showItems = function (data) {
+  clearNewItem()
+  const contentTemplate = require('./templates/content.handlebars')
+  const content = contentTemplate({ items: data })
+  renderView('.content-div', content)
+}
+
 const newItem = function () {
   // disable Add Snippet button
-  $('#new-item-link').addClass('.disabled').attr('disabled', true).prop('disabled', true)
+  $('#new-item-link').addClass('.disabled')
+  $('#new-item-link').attr('disabled', true)
+  $('#new-item-link').prop('disabled', true)
+
   const contentTemplate = require('./templates/new-item.handlebars')
   prependView('.item-grid', contentTemplate())
 }
 
-const cancelNewItem = function () {
+const clearNewItem = function () {
   // re-enable add snippet button
-  $('#new-item-link').removeClass('.disabled').attr('disabled', false).prop('disabled', false)
-  $('.new-item').remove()
+  $('#new-item-link').removeClass('.disabled')
+  $('#new-item-link').attr('disabled', false)
+  $('#new-item-link').prop('disabled', false)
+
+  $('.create-item').remove()
 }
 
 const updateItem = function (event) {
@@ -127,8 +138,9 @@ module.exports = {
   renderView,
   appendView,
   prependView,
+  showItems,
   newItem,
-  cancelNewItem,
+  clearNewItem,
   updateItem,
   cancelUpdate,
   saveUpdate,
