@@ -81,12 +81,20 @@ const onChangePassword = function (event) {
   const data = getFormFields(event.target)
   event.preventDefault()
 
-  if (data.passwords.old.length !== 0 && data.passwords.new.length !== 0) {
+  if (!data.passwords.old) {
+    view.formAlert('#change-password', '#change-password-old')
+    // views.message('old password required')
+  } else if (!data.passwords.new) {
+    view.formAlert('#change-password', '#change-password-new')
+    // views.message('new password required')
+  } else if (data.passwords.new !== data.passwords.password_confirmation) {
+    // view.message('passwords must match')
+    view.formAlert('#change-password', '#change-password-confirm')
+  } else {
+    // make API call and set up handlers for callbacks
     api.changePassword(data)
       .then(ui.changePasswordSuccess)
       .catch(ui.changePasswordFailure)
-  } else {
-    console.log('old and new password required')
   }
 }
 
