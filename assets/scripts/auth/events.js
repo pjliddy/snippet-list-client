@@ -121,6 +121,12 @@ const addHandlers = () => {
   $('.navbar-div').on('submit', '#change-password', onChangePassword)
   // sign out buton click
   $('.navbar-div').on('click', '#sign-out-btn', onSignOut)
+
+  // tabbed ui toggles
+  $('.content-div').on('show.bs.tab', 'a[data-toggle="tab"]', function (event) {
+    // clear fields from previous active tab
+    $($(event.relatedTarget).attr('href')).find('.form-control').val('')
+  })
 }
 
 module.exports = {

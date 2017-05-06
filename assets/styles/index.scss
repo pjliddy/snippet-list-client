@@ -1,6 +1,8 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+$input-background-color: #fff;
+
 .nav-tabs {
   border-bottom: 0;
 }
@@ -21,4 +23,16 @@ textarea {
 
 .input-group {
   width: 100%;
+}
+
+input:-webkit-autofill {
+  // border: 1px solid #ccc;
+  -webkit-box-shadow: 0 0 0 1000px $input-background-color inset;
+}
+
+input:focus,
+input:-webkit-autofill:focus {
+  // border-color: #66afe9;
+  -webkit-box-shadow: 0 0 0 1000px $input-background-color inset,
+                      0 0 8px rgba(102, 175, 233, 0.6);
 }
