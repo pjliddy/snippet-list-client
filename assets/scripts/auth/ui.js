@@ -2,6 +2,7 @@
 
 // store accesses the client global store object
 const store = require('../store')
+// view accesses the view controller methods
 const view = require('../view')
 
 // signUpSuccess(response)
@@ -22,8 +23,8 @@ const signUpFailure = (error) => {
 //  successful user sign in
 
 const signInSuccess = (response) => {
-  view.setPrivateMode()
   store.user = response.user
+  view.setPrivateMode()
   view.successMessage('signInSuccess:', response)
 }
 
@@ -54,9 +55,9 @@ const changePasswordFailure = (error) => {
 //  successful user sign out
 
 const signOutSuccess = (response) => {
+  store.user = null
   view.setPublicMode()
   // list.succeed('signOutSuccess:')
-  store.user = null
 }
 
 // signOutFailure(error)

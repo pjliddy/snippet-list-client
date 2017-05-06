@@ -18,8 +18,8 @@ const onGetItems = function (event) {
 
 // onGetItem()
 //    handle form submission for get item event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION
-
+//    not in use
+//
 // const onGetItem = function (event) {
 //   event.preventDefault()
 //   const data = getFormFields(event.target)
@@ -31,15 +31,18 @@ const onGetItems = function (event) {
 
 // onCreateItem()
 //    handle form submission for create item event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onCreateItem = function (event) {
-  event.preventDefault()
+  // get data object from sign up form
   const data = getFormFields(event.target)
+  // prevent default form post
+  event.preventDefault()
 
+  // validate input fields
   if (!data.item.title) {
     view.formAlert('#new-item', '#create-item-title')
   } else {
+    // make API calls and set up handlers for callbacks
     api.createItem(data)
       .then(ui.createItemSuccess)
       .then(() => {
@@ -53,32 +56,39 @@ const onCreateItem = function (event) {
 
 // onUpdateItem()
 //    handle form submission for update item event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onUpdateItem = function (event) {
-  event.preventDefault()
+  // get data object from sign up form
   const data = getFormFields(event.target)
   data.item.id = $(event.target).closest('.panel').data('id')
+  // prevent default form post
+  event.preventDefault()
 
-  api.updateItem(data)
-    .then(ui.updateItemSuccess)
-    .catch(ui.updateItemFailure)
+  // validate input fields
+  if (!data.item.title) {
+    view.formAlert('#update-item', '#update-item-title')
+  } else {
+    // make API calls and set up handlers for callbacks
+    api.updateItem(data)
+      .then(ui.updateItemSuccess)
+      .catch(ui.updateItemFailure)
+  }
 }
 
 // onDeleteItem()
 //    handle form submission for delete item event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION & CONFIRMATION
 
 const onDeleteItem = function (event) {
-  event.preventDefault()
-  // const data = getFormFields(event.target)
-
+  // create data object from clicked item
   const data = {
     item: {
       id: $(event.target).closest('.panel').data('id')
     }
   }
+  // prevent default form post
+  event.preventDefault()
 
+  // make API calls and set up handlers for callbacks
   api.deleteItem(data)
     .then(ui.deleteItemSuccess)
     .then(() => {
@@ -93,16 +103,25 @@ const onDeleteItem = function (event) {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  // $('.content-div').on('submit', '#get-item', onGetItem)
+  // new item (add snippet) link clicked
   $('.navbar-div').on('click', '#new-item-link', view.newItem)
+  // cancel link in new item form clicked
   $('.content-div').on('click', '#create-item-cancel', view.clearNewItem)
+  // create item form submitted
   $('.content-div').on('submit', '#create-item', onCreateItem)
 
+  // edit item link clicked
   $('.content-div').on('click', '.edit-item-link', view.updateItem)
+  // cancel link in update item form clicked
   $('.content-div').on('click', '#update-item-cancel', view.cancelUpdate)
+  // update item form submitted
   $('.content-div').on('submit', '#update-item', onUpdateItem)
 
+  // delete item link clicked
   $('.content-div').on('click', '.delete-item-link', onDeleteItem)
+
+  // get item form submitted -- not used
+  // $('.content-div').on('submit', '#get-item', onGetItem)
 }
 
 module.exports = {

@@ -1,5 +1,6 @@
 'use strict'
 
+// view accesses the view controller methods
 const view = require('../view')
 
 // getItemsSuccess(response)

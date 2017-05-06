@@ -3,120 +3,123 @@
 const getFormFields = require('../../../lib/get-form-fields')
 const view = require('../view')
 
-const api = require('./api')
-const ui = require('./ui')
+const authApi = require('./api')
+const authUi = require('./ui')
 
 const itemApi = require('../items/api')
 const itemUi = require('../items/ui')
 
 // onSignUp()
 //    handle form submission for user sign up event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onSignUp = function (event) {
+  // get data object from sign up form
   const data = getFormFields(event.target)
+  // prevent default form post
   event.preventDefault()
 
+  // validate input fields
   if (!data.credentials.email) {
-    // view.message('email required')
     view.formAlert('#sign-up', '#sign-up-email')
   } else if (!data.credentials.password) {
-    // view.message('password required')
     view.formAlert('#sign-up', '#sign-up-password')
   } else if (!data.credentials.password_confirmation) {
-    // view.message('password confirmation required')
     view.formAlert('#sign-up', '#sign-up-password-confirm')
   } else if (data.credentials.password !== data.credentials.password_confirmation) {
-    // view.message('passwords must match')
     view.formAlert('#sign-up', '#sign-up-password-confirm')
   } else {
-    // make API call and set up handlers for callbacks
-    api.signUp(data)
-      .then(ui.signUpSuccess)
+    // make API calls and set up handlers for callbacks
+    authApi.signUp(data)
+      .then(authUi.signUpSuccess)
       .then(() => {
-        api.signIn(data)
-          .then(ui.signInSuccess)
+        authApi.signIn(data)
+          .then(authUi.signInSuccess)
           .then(() => {
             itemApi.getItems()
               .then(itemUi.getItemsSuccess)
               .catch(itemUi.getItemsFailure)
           })
-          .catch(ui.signInFailure)
+          .catch(authUi.signInFailure)
       })
-      .catch(ui.signUpFailure)
+      .catch(authUi.signUpFailure)
   }
 }
 
 // onSignIn()
 //    handle form submission for user sign in event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onSignIn = function (event) {
+  // get data object from sign in form
+  const data = getFormFields(this)
   // prevent default form post
   event.preventDefault()
-  // get data object from user sign in form
-  const data = getFormFields(this)
 
+  // validate input fields
   if (!data.credentials.email) {
     view.formAlert('#sign-in', '#sign-in-email')
   } else if (!data.credentials.password) {
     view.formAlert('#sign-in', '#sign-in-password')
   } else {
-    api.signIn(data)
-      .then(ui.signInSuccess)
+    // make API calls and set up handlers for callbacks
+    authApi.signIn(data)
+      .then(authUi.signInSuccess)
       .then(() => {
         itemApi.getItems()
           .then(itemUi.getItemsSuccess)
           .catch(itemUi.getItemsFailure)
       })
-      .catch(ui.signInFailure)
+      .catch(authUi.signInFailure)
   }
 }
 
 // onChangePassword()
 //    handle form submission for change password event
-//    NOTE: REQUIRES INPUT FIELD VALIDATION
 
 const onChangePassword = function (event) {
+  // get data object from change password form
   const data = getFormFields(event.target)
+  // prevent default form post
   event.preventDefault()
 
+  // validate input fields
   if (!data.passwords.old) {
     view.formAlert('#change-password', '#change-password-old')
-    // views.message('old password required')
   } else if (!data.passwords.new) {
     view.formAlert('#change-password', '#change-password-new')
-    // views.message('new password required')
   } else if (data.passwords.new !== data.passwords.password_confirmation) {
-    // view.message('passwords must match')
     view.formAlert('#change-password', '#change-password-confirm')
   } else {
     // make API call and set up handlers for callbacks
-    api.changePassword(data)
-      .then(ui.changePasswordSuccess)
-      .catch(ui.changePasswordFailure)
+    authApi.changePassword(data)
+      .then(authUi.changePasswordSuccess)
+      .catch(authUi.changePasswordFailure)
   }
 }
 
 // onSignOut()
 //    handle form submission for user sign out event
-//    NOTE: REQUIRES ARE YOU SURE? VALIDATION
 
 const onSignOut = function (event) {
+  // prevent default form post
   event.preventDefault()
 
-  api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signOutFailure)
+  // make API call and set up handlers for callbacks
+  authApi.signOut()
+    .then(authUi.signOutSuccess)
+    .catch(authUi.signOutFailure)
 }
 
 // addHandlers()
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  $('.content-div').on('submit', '#sign-up', onSignUp)
+  // user sign in form submission
   $('.content-div').on('submit', '#sign-in', onSignIn)
+  // new user sign up form submission
+  $('.content-div').on('submit', '#sign-up', onSignUp)
+  // change password form submission
   $('.navbar-div').on('submit', '#change-password', onChangePassword)
+  // sign out buton click
   $('.navbar-div').on('click', '#sign-out-btn', onSignOut)
 }
 

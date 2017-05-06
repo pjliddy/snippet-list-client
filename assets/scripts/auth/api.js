@@ -2,7 +2,6 @@
 
 // config accesses base_URI for dev or production environment
 const config = require('../config')
-
 // store accesses the client global store object
 const store = require('../store')
 
@@ -10,9 +9,6 @@ const store = require('../store')
 //  POST to base_URI + '/sign-up'
 
 const signUp = (data) => {
-  // debug
-  console.log(`signUp(${JSON.stringify(data)})`)
-
   return $.ajax({
     url: config.apiOrigin + '/sign-up',
     method: 'POST',
@@ -24,9 +20,6 @@ const signUp = (data) => {
 //  POST to base_URI + '/sign-in'
 
 const signIn = (data) => {
-  // debug
-  console.log(`signIn(${JSON.stringify(data)})`)
-
   return $.ajax({
     url: config.apiOrigin + '/sign-in',
     method: 'POST',
@@ -38,10 +31,6 @@ const signIn = (data) => {
 //  PATCH to base_URI + '/change-password/' + user_id
 
 const changePassword = (data) => {
-  // debug
-  // console.log(`changePassword(${data.passwords})`)
-  console.log(`changePassword(${JSON.stringify(data.passwords)})`)
-
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.user.id,
     method: 'PATCH',
@@ -56,9 +45,6 @@ const changePassword = (data) => {
 //  DELETE to base_URI + '/sign-out/' + user_id
 
 const signOut = () => {
-  // debug
-  console.log(`signOut()`)
-
   return $.ajax({
     url: config.apiOrigin + '/sign-out/' + store.user.id,
     method: 'DELETE',
