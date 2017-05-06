@@ -2,18 +2,15 @@
   <li class="active"><a data-toggle="tab" href="#sign-in-tab">Sign In</a></li>
   <li><a data-toggle="tab" href="#sign-up-tab">Sign Up</a></li>
 </ul>
-
 <div class="tab-content">
   <div id="sign-in-tab" class="tab-pane in active">
     <!-- layout for sign in panel -->
     <div class="panel panel-default">
-      <!-- <div class="panel-heading">Panel Heading</div> -->
       <div class="panel-body">
         <!-- POST	/sign-in	users#signin -->
         <form id="sign-in" class="form">
           <fieldset>
             <legend>Sign In</legend>
-
             <div class="form-group">
               <label for="sign-in-email" class="sr-only">Email</label>
               <div class="input-group">
@@ -22,7 +19,6 @@
               </div>
               <p class="help-block">Please enter an email address.</p>
             </div>
-
             <div class="form-group">
               <label for="sign-in-password" class="sr-only">Password</label>
               <div class="input-group">
@@ -38,8 +34,8 @@
     </div>
   </div>
   <div id="sign-up-tab" class="tab-pane">
+    <!-- layout for sign up panel -->
     <div class="panel panel-default">
-      <!-- <div class="panel-heading">Panel Heading</div> -->
       <div class="panel-body">
         <!-- POST	/sign-up	users#signup -->
         <form id="sign-up" class="form">
@@ -69,13 +65,6 @@
               </div>
               <p class="help-block">Please enter matching passwords.</p>
             </div>
-
-
-            <!-- <div class="form-group">
-              <label for="sign-up-password-confirm" class="sr-only">Confirm</label>
-              <input type="password" class="form-control" name="credentials[password_confirmation]" id="sign-up-password-confirm" placeholder="confirm" value="">
-            </div> -->
-            <!-- <button type="button" class="btn btn-link" id="sign-up-cancel">Cancel</button> -->
             <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Sign Up</button>
           </fieldset>
         </form>

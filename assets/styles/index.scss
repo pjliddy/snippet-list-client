@@ -14,3 +14,11 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 .help-block {
   display: none;
 }
+
+textarea {
+  resize: vertical;
+}
+
+.input-group {
+  width: 100%;
+}
