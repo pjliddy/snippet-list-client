@@ -72,6 +72,14 @@ const closeAlert = function () {
   $('.alert').alert('close')
 }
 
+// confirm delete modal
+
+const confirmDelete = function () {
+  const contentTemplate = require('./templates/confirm-delete.handlebars')
+  const content = contentTemplate()
+  appendView('body', content)
+  $('#delete-modal').modal('show')
+}
 //
 // switching public & private modes
 //
@@ -197,6 +205,7 @@ module.exports = {
   formAlert,
   showAlert,
   closeAlert,
+  confirmDelete,
   setPublicMode,
   setPrivateMode,
   showItems,
