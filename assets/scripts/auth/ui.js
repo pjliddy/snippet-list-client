@@ -41,7 +41,8 @@ const signInFailure = (error) => {
 //  successful password change
 
 const changePasswordSuccess = (response) => {
-  view.successMessage('changePasswordSuccess:', undefined)
+  view.changePasswordSuccess()
+  // view.successMessage('changePasswordSuccess:', undefined)
 }
 
 // changePasswordFailure(error)

@@ -17,6 +17,8 @@ const failureMessage = function (msg, response) {
 }
 
 const setPublicMode = function () {
+  closeAlert()
+
   const navTemplate = require('./templates/nav-public.handlebars')
   renderView('.navbar-div', navTemplate())
 
@@ -36,6 +38,9 @@ const prependView = function (element, content) {
   $(content).prependTo(element)
 }
 
+const insertView = function (element, content) {
+  $(element).before(content)
+}
 const replaceView = function (element, content) {
   $(element).replaceWith(content)
 }
@@ -129,6 +134,22 @@ const formAlert = function (form, field) {
   $(field).closest('.form-group').find('.help-block').show()
 }
 
+const changePasswordSuccess = function () {
+  $('#change-password-nav').dropdown('toggle')
+  $('#change-password input').val('')
+  showAlert('Password changed.')
+}
+
+const showAlert = function (message) {
+  const alertTemplate = require('./templates/alert-info.handlebars')
+  const content = alertTemplate({ message: message })
+  insertView('.content-div', content)
+}
+
+const closeAlert = function () {
+  $('.alert').alert('close')
+}
+
 module.exports = {
   message,
   successMessage,
@@ -138,11 +159,15 @@ module.exports = {
   renderView,
   appendView,
   prependView,
+  insertView,
   showItems,
   newItem,
   clearNewItem,
   updateItem,
   cancelUpdate,
   saveUpdate,
-  formAlert
+  formAlert,
+  changePasswordSuccess,
+  showAlert,
+  closeAlert
 }
