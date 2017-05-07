@@ -1,5 +1,7 @@
 'use strict'
 
+const hljs = require('highlight.js')
+
 //
 // VIEW RENDERING METHODS
 //
@@ -295,6 +297,8 @@ const showChangePasswordFailure = () => {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
+  hljs.initHighlightingOnLoad()
+
   // add animation to dropdown expand
   $('.navbar-div').on('show.bs.dropdown', '.dropdown', (event) => {
     $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown(250)
@@ -314,6 +318,7 @@ const addHandlers = () => {
 }
 
 module.exports = {
+  hljs,
   renderView,
   appendView,
   prependView,

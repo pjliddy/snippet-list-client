@@ -18,7 +18,14 @@ $input-background-color: #fff;
 }
 
 textarea {
+  font-family: monospace;
   resize: vertical;
+}
+
+.item-body {
+  font-family: monospace;
+  white-space: pre-wrap;
+  word-break: normal;
 }
 
 .input-group {
