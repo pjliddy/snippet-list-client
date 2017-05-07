@@ -17,6 +17,9 @@ const getItemsFailure = () => {
   view.showAlert(`error`, `Hmmm. Couldn't get your list of items...`)
 }
 
+const createItemSuccess = () => {
+  view.enableNewItem()
+}
 //  createItemFailure()
 //    error from create item
 
@@ -48,6 +51,7 @@ const deleteItemFailure = () => {
 module.exports = {
   getItemsSuccess,
   getItemsFailure,
+  createItemSuccess,
   createItemFailure,
   updateItemSuccess,
   updateItemFailure,

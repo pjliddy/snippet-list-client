@@ -32,6 +32,7 @@ const onCreateItem = function (event) {
   } else {
     // make API calls and set up handlers for callbacks
     api.createItem(data)
+      .then(ui.createItemSuccess)
       .then(() => {
         api.getItems()
           .then(ui.getItemsSuccess)

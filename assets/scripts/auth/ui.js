@@ -45,7 +45,7 @@ const changePasswordSuccess = () => {
 //    error from password change
 
 const changePasswordFailure = () => {
-  view.showAlert(`error`, `For highly complex reasons, your password couldn't be changed.`)
+  view.showChangePasswordFailure()
 }
 
 // signOutSuccess()

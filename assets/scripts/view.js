@@ -65,7 +65,7 @@ const formAlert = (form, field) => {
 // showAlert(mode, message)
 //    displays global alert box for info or warning
 
-const showAlert = function (mode, message) {
+const showAlert = (mode, message) => {
   let alertTemplate
   // render handlebars template with message
   if (mode === `error`) {
@@ -88,21 +88,21 @@ const showAlert = function (mode, message) {
 // closeError()
 //  close global error box but not info alerts
 
-const closeError = function () {
+const closeError = () => {
   $('.alert-danger').alert('close')
 }
 
 // closeAlert()
 //   close all global alert boxes
 
-const closeAlert = function () {
+const closeAlert = () => {
   $('.alert').alert('close')
 }
 
 // confirmDelete(id)
 //    presents a modal dialog to confirm user's action to delete an item
 
-const confirmDelete = function (id) {
+const confirmDelete = (id) => {
   // render handlebars template with data-id for item
   const contentTemplate = require('./templates/confirm-delete.handlebars')
   const content = contentTemplate({id: id})
@@ -120,6 +120,20 @@ const confirmDelete = function (id) {
   $('#delete-modal').modal('show')
 }
 
+const disableNewItem = () => {
+  // disable Add Snippet button so only one new item dialog can be open
+  $('#new-item-link').addClass('.disabled')
+  $('#new-item-link').attr('disabled', true)
+  $('#new-item-link').prop('disabled', true)
+}
+
+const enableNewItem = () => {
+  // re-enable add snippet button
+  $('#new-item-link').removeClass('.disabled')
+  $('#new-item-link').attr('disabled', false)
+  $('#new-item-link').prop('disabled', false)
+}
+
 //
 //  PUBLIC AND PRIVATE MODES
 //
@@ -127,7 +141,7 @@ const confirmDelete = function (id) {
 //  setPublicMode()
 //    set public mode for navbar and content area
 
-const setPublicMode = function () {
+const setPublicMode = () => {
   closeAlert()
   // render handlebars template for public nav
   const navTemplate = require('./templates/nav-public.handlebars')
@@ -140,7 +154,7 @@ const setPublicMode = function () {
 //  setPrivateMode()
 //    set private mode for navbar and content area
 
-const setPrivateMode = function () {
+const setPrivateMode = () => {
   // render handlebars template for private nav
   const navTemplate = require('./templates/nav-private.handlebars')
   renderView('.navbar-div', navTemplate())
@@ -153,7 +167,7 @@ const setPrivateMode = function () {
 //  showItems(data)
 //    show all items for current user
 
-const showItems = function (data) {
+const showItems = (data) => {
   // render handlebars template for private nav
   const contentTemplate = require('./templates/content.handlebars')
   const content = contentTemplate({ items: data })
@@ -163,12 +177,9 @@ const showItems = function (data) {
 //  showNewItem()
 //    show the new item form
 
-const showNewItem = function () {
-  // disable Add Snippet button so only one new item dialog can be open
-  $('#new-item-link').addClass('.disabled')
-  $('#new-item-link').attr('disabled', true)
-  $('#new-item-link').prop('disabled', true)
-
+const showNewItem = () => {
+  // disable new item button
+  disableNewItem()
   // render handlebars template for new item form
   const contentTemplate = require('./templates/new-item.handlebars')
   prependView('.item-grid', contentTemplate())
@@ -177,12 +188,9 @@ const showNewItem = function () {
 //  cancelNewItem()
 //    cancel the new item form
 
-const cancelNewItem = function () {
-  // re-enable add snippet button
-  $('#new-item-link').removeClass('.disabled')
-  $('#new-item-link').attr('disabled', false)
-  $('#new-item-link').prop('disabled', false)
-
+const cancelNewItem = () => {
+  // re-enable new item button
+  enableNewItem()
   // clear new item form element from DOM
   $('.create-item').remove()
 }
@@ -190,7 +198,7 @@ const cancelNewItem = function () {
 //  showUpdateItem(event)
 //    show the update item form
 
-const showUpdateItem = function (event) {
+const showUpdateItem = (event) => {
   // store values from current item to store (for cancel)
   const item = {
     id: $(event.target).closest('.panel').data('id'),
@@ -207,7 +215,7 @@ const showUpdateItem = function (event) {
 //  saveUpdateItem(item)
 //    change from edit to view mode
 
-const saveUpdateItem = function (item) {
+const saveUpdateItem = (item) => {
   // render handlebars template to show new item
   const viewTemplate = require('./templates/show-item.handlebars')
   const itemDiv = $('.update-item')
@@ -217,7 +225,7 @@ const saveUpdateItem = function (item) {
 // cancelUpdateItem(event)
 //    cancel the update item form
 
-const cancelUpdateItem = function (event) {
+const cancelUpdateItem = (event) => {
   // get original item data
   const item = {
     item: {
@@ -238,13 +246,40 @@ const cancelUpdateItem = function (event) {
 //  showChangePasswordSuccess()
 //    password changed successfully
 
-const showChangePasswordSuccess = function () {
+const showChangePasswordSuccess = () => {
   // collapse change password dropdown
   $('#change-password-nav').dropdown('toggle')
+  $('.navbar-collapse').collapse('hide')
   // clear change password form fields
   $('#change-password input').val('')
   // display successful alert message
   showAlert('info', 'Password changed.')
+}
+
+const showChangePasswordFailure = () => {
+  $('#change-password-nav').dropdown('toggle')
+  $('.navbar-collapse').collapse('hide')
+  // clear change password form fields
+  $('#change-password input').val('')
+  // display successful alert message
+  showAlert(`error`, `For highly complex reasons, your password couldn't be changed.`)
+}
+
+const addHandlers = () => {
+  // add animation to dropdown expand
+  $('.navbar-div').on('show.bs.dropdown', '.dropdown', (event) => {
+    $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown()
+  })
+
+  // add animation to dropdown collapse
+  $('.navbar-div').on('hide.bs.dropdown', '.dropdown', (event) => {
+    event.preventDefault()
+    $(event.target).find('.dropdown-menu').first().stop(true, true).slideUp(
+      350, () => {
+        $('.dropdown').removeClass('open')
+        $('.dropdown').find('.dropdown-toggle').attr('aria-expanded', 'false')
+      })
+  })
 }
 
 module.exports = {
@@ -257,6 +292,8 @@ module.exports = {
   closeAlert,
   closeError,
   confirmDelete,
+  disableNewItem,
+  enableNewItem,
   setPublicMode,
   setPrivateMode,
   showItems,
@@ -265,5 +302,7 @@ module.exports = {
   showUpdateItem,
   saveUpdateItem,
   cancelUpdateItem,
-  showChangePasswordSuccess
+  showChangePasswordSuccess,
+  showChangePasswordFailure,
+  addHandlers
 }

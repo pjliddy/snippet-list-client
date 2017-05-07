@@ -10,6 +10,7 @@ $(() => {
   setAPIOrigin(location, config)
   authEvents.addHandlers()
   itemEvents.addHandlers()
+  view.addHandlers()
   view.setPublicMode()
 })
 
