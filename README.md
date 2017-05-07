@@ -9,16 +9,17 @@ All developers have huge collections of bookmarks to articles, documentation, sa
 ## User Stories
 
 #### Authentication Stories
-1. As an unregistered user, I want to register and create an account so I can use the application. _(API Complete)_
-1. As a registered user, I want to sign in so I can access my collection. _(API Complete)_
-1. As an authenticated user, I want to change my password. _(API Complete)_
+1. As an unregistered user, I want to register and create an account so I can use the application. **(Complete)**
+1. As a registered user, I want to sign in so I can access my collection. **(Complete)**
+1. As an authenticated user, I want to change my password. **(Complete)**
 
 #### Collection Stories
-1. As an authenticated user, I want to add an snippet to my collection so I can refer to it later.
-1. As an authenticated user, I want to delete a snippet in my collection.
-1. As an authenticated user, I want to edit an item in my collection
+1. As an authenticated user, I want to add an snippet to my collection so I can refer to it later. **(Complete)**
+1. As an authenticated user, I want to delete a snippet in my collection. **(Complete)**
+1. As an authenticated user, I want to edit an item in my collection so that I can keep the content relevant. **(Complete)**
 
 #### Backlog
+1. As a developer, I want my code to be tested so I can be confident in its quality.
 1. As an authenticated user, I want to add a tag to one of my snippets.
 1. As an authenticated user, I want to filter my collection by tag.
 

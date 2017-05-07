@@ -62,18 +62,26 @@ const formAlert = (form, field) => {
   $(field).closest('.form-group').find('.help-block').show()
 }
 
+// clearFormAlerts(form)
+//    clear all feedback classes and icons from form fields
+
+const clearFormAlerts = (form) => {
+  $(form).find('.form-group').removeClass('has-warning has-feedback')
+  // add alert icon to specific input
+  $(form).find('.glyphicon-warning-sign').append(`<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`)
+  // show help text for specific input
+  $(form).find('.help-block').show()
+}
+
 // showAlert(mode, message)
 //    displays global alert box for info or warning
 
 const showAlert = (mode, message) => {
-  let alertTemplate
-  // render handlebars template with message
-  if (mode === `error`) {
-    alertTemplate = require('./templates/alert-error.handlebars')
-  } else {
-    alertTemplate = require('./templates/alert-info.handlebars')
-  }
-  const content = alertTemplate({ message: message })
+  // convert mode label to bootstrap class
+  mode = (mode === 'error') ? 'danger' : 'info'
+  // render handlebars template for alert
+  const alertTemplate = require('./templates/alert.handlebars')
+  const content = alertTemplate({ mode: mode, message: message })
 
   // if there's already an alert
   if ($('.alert').length) {
@@ -104,7 +112,7 @@ const closeAlert = () => {
 
 const confirmDelete = (id) => {
   // render handlebars template with data-id for item
-  const contentTemplate = require('./templates/confirm-delete.handlebars')
+  const contentTemplate = require('./templates/modal-confirm-delete.handlebars')
   const content = contentTemplate({id: id})
 
   // if there's already a modal
@@ -147,7 +155,7 @@ const setPublicMode = () => {
   const navTemplate = require('./templates/nav-public.handlebars')
   renderView('.navbar-div', navTemplate())
   // render handlebars template for sign-in/sign-up forms
-  const contentTemplate = require('./templates/auth-forms.handlebars')
+  const contentTemplate = require('./templates/form-auth.handlebars')
   renderView('.content-div', contentTemplate())
 }
 
@@ -169,7 +177,7 @@ const setPrivateMode = () => {
 
 const showItems = (data) => {
   // render handlebars template for private nav
-  const contentTemplate = require('./templates/content.handlebars')
+  const contentTemplate = require('./templates/item-grid.handlebars')
   const content = contentTemplate({ items: data })
   renderView('.content-div', content)
 }
@@ -181,7 +189,7 @@ const showNewItem = () => {
   // disable new item button
   disableNewItem()
   // render handlebars template for new item form
-  const contentTemplate = require('./templates/new-item.handlebars')
+  const contentTemplate = require('./templates/item-new.handlebars')
   prependView('.item-grid', contentTemplate())
 }
 
@@ -207,7 +215,7 @@ const showUpdateItem = (event) => {
   }
 
   // render handlebars template for edit item form
-  const updateTemplate = require('./templates/update-item.handlebars')
+  const updateTemplate = require('./templates/item-update.handlebars')
   const itemDiv = $(event.target).closest('.show-item')
   replaceView(itemDiv, updateTemplate(item))
 }
@@ -217,7 +225,7 @@ const showUpdateItem = (event) => {
 
 const saveUpdateItem = (item) => {
   // render handlebars template to show new item
-  const viewTemplate = require('./templates/show-item.handlebars')
+  const viewTemplate = require('./templates/item-show.handlebars')
   const itemDiv = $('.update-item')
   replaceView(itemDiv, viewTemplate(item))
 }
@@ -238,7 +246,7 @@ const cancelUpdateItem = (event) => {
   }
 
   // render handlebars template for original data view
-  const viewTemplate = require('./templates/show-item.handlebars')
+  const viewTemplate = require('./templates/item-show.handlebars')
   const itemDiv = $(event.target).closest('.update-item')
   replaceView(itemDiv, viewTemplate(item))
 }
@@ -255,6 +263,9 @@ const showChangePasswordSuccess = () => {
   // display successful alert message
   showAlert('info', 'Password changed.')
 }
+
+//  showChangePasswordFailure()
+//    password change failed
 
 const showChangePasswordFailure = () => {
   $('#change-password-nav').dropdown('toggle')
@@ -288,6 +299,7 @@ module.exports = {
   prependView,
   insertView,
   formAlert,
+  clearFormAlerts,
   showAlert,
   closeAlert,
   closeError,
