@@ -32,7 +32,7 @@ const onSignUp = function (event) {
   } else {
     // make API calls and set up handlers for callbacks
     authApi.signUp(data)
-      .then(authUi.signUpSuccess)
+      // .then(authUi.signUpSuccess)
       .then(() => {
         authApi.signIn(data)
           .then(authUi.signInSuccess)
@@ -128,6 +128,8 @@ const addHandlers = () => {
   $('.content-div').on('show.bs.tab', 'a[data-toggle="tab"]', function (event) {
     // clear fields from previous active tab
     $($(event.relatedTarget).attr('href')).find('.form-control').val('')
+    // remove validation errors
+    view.clearFormAlerts('#' + $($(event.relatedTarget).attr('href')).find('form').attr('id'))
     // close any errors before proceeding
     view.closeError()
   })

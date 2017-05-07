@@ -43,17 +43,18 @@ const replaceView = (element, content) => {
 // VALIDATION & ALERT METHODS
 //
 
+// navBarCollapse()
+//    collapses navbar (for responsive selections)
+
+const collapseNavbar = () => {
+  $('.navbar-collapse').collapse('hide')
+}
+
 // formAlert(form, field)
 //    triggers form input validation alert
 
 const formAlert = (form, field) => {
-  // clear all alert classes from inputs
-  $(form).find('.form-group').removeClass('has-warning has-feedback')
-  // remove all alert class icons from inputs
-  $(form).find('.form-group .form-control-feedback').remove()
-  // hide any visible help text
-  $(form).find('.help-block').hide()
-
+  clearFormAlerts(form)
   // apply alert classes to specfic input
   $(field).closest('.form-group').addClass('has-warning has-feedback')
   // add alert icon to specific input
@@ -62,15 +63,26 @@ const formAlert = (form, field) => {
   $(field).closest('.form-group').find('.help-block').show()
 }
 
+// clearFormFields(form)
+//    clear all values from form fields
+
+const clearForm = (form) => {
+  // clear form field alerts
+  clearFormAlerts(form)
+  // clear field values
+  $(form).find('.form-control').val('')
+}
+
 // clearFormAlerts(form)
 //    clear all feedback classes and icons from form fields
 
 const clearFormAlerts = (form) => {
+  // clear all alert classes from inputs
   $(form).find('.form-group').removeClass('has-warning has-feedback')
-  // add alert icon to specific input
-  $(form).find('.glyphicon-warning-sign').append(`<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>`)
-  // show help text for specific input
-  $(form).find('.help-block').show()
+  // remove all alert class icons from inputs
+  $(form).find('.form-group .form-control-feedback').remove()
+  // hide any visible help text
+  $(form).find('.help-block').hide()
 }
 
 // showAlert(mode, message)
@@ -163,6 +175,7 @@ const setPublicMode = () => {
 //    set private mode for navbar and content area
 
 const setPrivateMode = () => {
+  closeAlert()
   // render handlebars template for private nav
   const navTemplate = require('./templates/nav-private.handlebars')
   renderView('.navbar-div', navTemplate())
@@ -186,6 +199,8 @@ const showItems = (data) => {
 //    show the new item form
 
 const showNewItem = () => {
+  // collapse responsive nav
+  collapseNavbar()
   // disable new item button
   disableNewItem()
   // render handlebars template for new item form
@@ -261,7 +276,7 @@ const showChangePasswordSuccess = () => {
   // clear change password form fields
   $('#change-password input').val('')
   // display successful alert message
-  showAlert('info', 'Password changed.')
+  showAlert('info', 'Your password is changed. Hope you remember it.')
 }
 
 //  showChangePasswordFailure()
@@ -276,19 +291,24 @@ const showChangePasswordFailure = () => {
   showAlert(`error`, `For highly complex reasons, your password couldn't be changed.`)
 }
 
+// addHandlers()
+//    assign event handlers to forms, buttons, and links in the UI
+
 const addHandlers = () => {
   // add animation to dropdown expand
   $('.navbar-div').on('show.bs.dropdown', '.dropdown', (event) => {
-    $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown()
+    $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown(250)
   })
 
   // add animation to dropdown collapse
   $('.navbar-div').on('hide.bs.dropdown', '.dropdown', (event) => {
     event.preventDefault()
     $(event.target).find('.dropdown-menu').first().stop(true, true).slideUp(
-      350, () => {
+      250, () => {
         $('.dropdown').removeClass('open')
         $('.dropdown').find('.dropdown-toggle').attr('aria-expanded', 'false')
+        // clear fields
+        clearForm($(event.target).find('.form').val('id'))
       })
   })
 }
@@ -298,7 +318,9 @@ module.exports = {
   appendView,
   prependView,
   insertView,
+  collapseNavbar,
   formAlert,
+  clearForm,
   clearFormAlerts,
   showAlert,
   closeAlert,

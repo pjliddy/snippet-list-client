@@ -8,15 +8,16 @@ const view = require('../view')
 // signUpSuccess()
 //    successful new user sign up
 
-const signUpSuccess = () => {
-  view.showAlert(`info`, `Welcome to your new Snippet List!`)
-}
+// const signUpSuccess = () => {
+//   view.showAlert(`info`, `Welcome to Snippet List!`)
+// }
 
 // signUpFailure()
 //    error from new user sign up
 
 const signUpFailure = () => {
   view.showAlert(`error`, `No dice. Something went wrong creating your account.`)
+  view.clearForm('#sign-up')
 }
 
 // signInSuccess(response)
@@ -31,7 +32,9 @@ const signInSuccess = (response) => {
 //    error from user sign in
 
 const signInFailure = () => {
-  view.formAlert('#sign-in', '#sign-in-password')
+  // view.formAlert('#sign-in', '#sign-in-password')
+  view.showAlert(`error`, `Looks like those are some bad credentials.`)
+  view.clearForm('#sign-in')
 }
 
 // changePasswordSuccess()
@@ -64,7 +67,7 @@ const signOutFailure = () => {
 }
 
 module.exports = {
-  signUpSuccess,
+  // signUpSuccess,
   signUpFailure,
   signInSuccess,
   signInFailure,
