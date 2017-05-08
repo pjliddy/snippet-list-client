@@ -1,6 +1,7 @@
 'use strict'
 
-const hljs = require('highlight.js')
+// const hljs = require('highlight.js')
+// const Masonry = require('masonry-layout')
 
 //
 // VIEW RENDERING METHODS
@@ -195,6 +196,12 @@ const showItems = (data) => {
   const contentTemplate = require('./templates/item-grid.handlebars')
   const content = contentTemplate({ items: data })
   renderView('.content-div', content)
+
+  // const layout = new Masonry($('.grid'), {
+  //   itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
+  //   columnWidth: '.grid-sizer',
+  //   percentPosition: true
+  // })
 }
 
 //  showNewItem()
@@ -297,8 +304,6 @@ const showChangePasswordFailure = () => {
 //    assign event handlers to forms, buttons, and links in the UI
 
 const addHandlers = () => {
-  hljs.initHighlightingOnLoad()
-
   // add animation to dropdown expand
   $('.navbar-div').on('show.bs.dropdown', '.dropdown', (event) => {
     $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown(250)
@@ -318,7 +323,7 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  hljs,
+  // hljs,
   renderView,
   appendView,
   prependView,

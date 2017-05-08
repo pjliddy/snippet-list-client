@@ -43,3 +43,24 @@ input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px $input-background-color inset,
                       0 0 8px rgba(102, 175, 233, 0.6);
 }
+
+
+.row.make-columns {
+    -moz-column-width: 480px;
+    -webkit-column-width: 480px;
+    -moz-column-gap: 0;
+    -webkit-column-gap:0;
+}
+
+.row.make-columns > div {
+    display: inline-block;
+    // padding:  .5rem;
+    width:  100%;
+}
+
+ /* demo only* */
+.panel {
+    display: inline-block;
+    height: 100%;
+    width:  100%;
+}
