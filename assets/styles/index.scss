@@ -1,50 +1,59 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+// color for input background in chrome (replace default yellow)
 $input-background-color: #fff;
+$input-shadow-color: rgba(102, 175, 233, .6);
 
+// autofill shadow for chrome
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $input-background-color inset;
+  // border: 1px solid #ccc;
+}
+
+// autofill focus shadow for chrome
+input:focus,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px $input-background-color inset,
+                      0 0 8px $input-shadow-color;
+  // border-color: #66afe9;
+}
+
+/// dropdown login form CSS
+.dropdown-menu {
+  min-width: 320px;
+  padding: 15px 15px 0;
+}
+
+// tab ui for public authentication forms
 .nav-tabs {
   border-bottom: 0;
 }
-// dropdown login form CSS
 
-.dropdown-menu {
-  min-width: 320px;
-  padding: 14px 14px 0;
+// input groups in forms
+.input-group {
+  width: 100%;
 }
 
+// validation feedback on form fields
 .help-block {
   display: none;
 }
 
+// textarea used for snippet input
 textarea {
   font-family: monospace;
   resize: vertical;
 }
 
+// div used for snippet display
 .item-body {
   font-family: monospace;
   white-space: pre-wrap;
   word-break: normal;
 }
 
-.input-group {
-  width: 100%;
-}
-
-input:-webkit-autofill {
-  // border: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 0 1000px $input-background-color inset;
-}
-
-input:focus,
-input:-webkit-autofill:focus {
-  // border-color: #66afe9;
-  -webkit-box-shadow: 0 0 0 1000px $input-background-color inset,
-                      0 0 8px rgba(102, 175, 233, 0.6);
-}
-
-
+// column layout
 .row.make-columns {
   column-gap: 0;
   // -moz-column-gap: 0;
@@ -53,14 +62,14 @@ input:-webkit-autofill:focus {
   // -moz-column-width: 480px;
   // -webkit-column-width: 480px;
 
-
   &.make-columns > div {
     display: inline-block;
     width: 100%;
   }
 }
 
-.panel {
+// panel in column layout
+.grid-item {
   display: inline-block;
   height: 100%;
   width: 100%;
