@@ -1,27 +1,29 @@
-<div class="col-sm-12 col-md-6 update-item grid-item">
-  <div class="panel panel-default" data-id="{{id}}">
-    <form id="update-item" class="form">
-      <div class="panel-body">
-        <!-- header -->
+<div class="row edit-item">
+  <div class="col-sm-12 grid-item">
+    <div class="panel panel-default grid-item-content" data-id="{{id}}">
+      <form id="update-item" class="form">
+        <div class="panel-body">
+          <!-- header -->
 
-        <div class="form-group">
-          <label for="update-item-title" class="sr-only">Title</label>
+          <div class="form-group">
+            <label for="update-item-title" class="sr-only">Title</label>
 
-            <input type="text" class="form-control" name="item[title]" id="update-item-title" placeholder="title" value='{{title}}' data-content="{{title}}">
+              <input type="text" class="form-control" name="item[title]" id="update-item-title" placeholder="title" value='{{title}}' data-content="{{title}}">
 
+          </div>
+          <!-- body -->
+          <div class="form-group">
+            <label for="update-item-body" class="sr-only">Body</label>
+            <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3" data-content="{{body}}">{{body}}</textarea>
+          </div>
         </div>
-        <!-- body -->
-        <div class="form-group">
-          <label for="update-item-body" class="sr-only">Body</label>
-          <textarea class="form-control" name="item[body]" id="update-item-body" placeholder="body" rows="3" data-content="{{body}}">{{body}}</textarea>
+        <!-- footer -->
+        <div class="panel-footer">
+          <a href="#" class="btn btn-link pull-left" id="update-item-cancel"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+          <button class="btn btn-link pull-right" type="submit"><span class="glyphicon glyphicon-ok"></span> Save</button>
+          <div class="clearfix"></div>
         </div>
-      </div>
-      <!-- footer -->
-      <div class="panel-footer">
-        <a href="#" class="btn btn-link pull-left" id="update-item-cancel"><span class="glyphicon glyphicon-remove"></span> Cancel</a>
-        <button class="btn btn-link pull-right" type="submit"><span class="glyphicon glyphicon-ok"></span> Save</button>
-        <div class="clearfix"></div>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>

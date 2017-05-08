@@ -115,9 +115,9 @@ const addHandlers = () => {
   // new item (add snippet) link clicked
   $('.navbar-div').on('click', '#new-item-link', view.showNewItem)
   // cancel link in new item form clicked
-  $('.content-div').on('click', '#create-item-cancel', view.cancelNewItem)
+  $('body').on('click', '#create-item-cancel', view.cancelNewItem)
   // create item form submitted
-  $('.content-div').on('submit', '#create-item', onCreateItem)
+  $('body').on('submit', '#create-item', onCreateItem)
 
   // edit item link clicked
   $('.content-div').on('click', '.edit-item-link', view.showUpdateItem)

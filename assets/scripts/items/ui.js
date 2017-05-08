@@ -17,9 +17,13 @@ const getItemsFailure = () => {
   view.showAlert(`error`, `Hmmm. Couldn't get your list of items...`)
 }
 
+//  createItemSuccess(response)
+//    successful create item
+
 const createItemSuccess = () => {
-  view.enableNewItem()
+  view.cancelNewItem()
 }
+
 //  createItemFailure()
 //    error from create item
 

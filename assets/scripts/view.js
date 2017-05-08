@@ -1,7 +1,8 @@
 'use strict'
 
 // const hljs = require('highlight.js')
-// const Masonry = require('masonry-layout')
+const Masonry = require('masonry-layout')
+let mGrid
 
 //
 // VIEW RENDERING METHODS
@@ -40,6 +41,13 @@ const insertView = (element, content) => {
 
 const replaceView = (element, content) => {
   $(element).replaceWith(content)
+}
+
+// removeView(element, content)
+//    replaces element with content
+
+const removeView = (element) => {
+  $(element).remove()
 }
 
 //
@@ -188,6 +196,18 @@ const setPrivateMode = () => {
 //  ITEM METHODS
 //
 
+//  initGrid()
+//    initializes Masonry grid
+
+const initGrid = () => {
+  mGrid = new Masonry('.grid', {
+    // options...
+    itemSelector: '.grid-item', // use a class other than .col-*
+    columnWidth: '.grid-sizer',
+    percentPosition: true
+  })
+}
+
 //  showItems(data)
 //    show all items for current user
 
@@ -196,12 +216,7 @@ const showItems = (data) => {
   const contentTemplate = require('./templates/item-grid.handlebars')
   const content = contentTemplate({ items: data })
   renderView('.content-div', content)
-
-  // const layout = new Masonry($('.grid'), {
-  //   itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
-  //   columnWidth: '.grid-sizer',
-  //   percentPosition: true
-  // })
+  initGrid()
 }
 
 //  showNewItem()
@@ -214,7 +229,9 @@ const showNewItem = () => {
   disableNewItem()
   // render handlebars template for new item form
   const contentTemplate = require('./templates/item-new.handlebars')
-  prependView('.item-grid', contentTemplate())
+
+  insertView('.content-div', contentTemplate())
+  // prependView('.content-div', contentTemplate())
 }
 
 //  cancelNewItem()
@@ -224,7 +241,7 @@ const cancelNewItem = () => {
   // re-enable new item button
   enableNewItem()
   // clear new item form element from DOM
-  $('.create-item').remove()
+  $('.add-item').remove()
 }
 
 //  showUpdateItem(event)
@@ -241,7 +258,11 @@ const showUpdateItem = (event) => {
   // render handlebars template for edit item form
   const updateTemplate = require('./templates/item-update.handlebars')
   const itemDiv = $(event.target).closest('.show-item')
-  replaceView(itemDiv, updateTemplate(item))
+  removeView(itemDiv)
+  // replaceView(itemDiv, updateTemplate(item))
+  insertView('.content-div', updateTemplate(item))
+  mGrid.remove(itemDiv)
+  mGrid.layout()
 }
 
 //  saveUpdateItem(item)
@@ -250,8 +271,11 @@ const showUpdateItem = (event) => {
 const saveUpdateItem = (item) => {
   // render handlebars template to show new item
   const viewTemplate = require('./templates/item-show.handlebars')
-  const itemDiv = $('.update-item')
+  const itemDiv = $('.edit-item')
   replaceView(itemDiv, viewTemplate(item))
+  // $(itemDiv).removeClass()
+  // $(itemDiv).addClass()
+  mGrid.layout()
 }
 
 // cancelUpdateItem(event)
@@ -292,6 +316,7 @@ const showChangePasswordSuccess = () => {
 //    password change failed
 
 const showChangePasswordFailure = () => {
+  // collapse change password dropdown
   $('#change-password-nav').dropdown('toggle')
   $('.navbar-collapse').collapse('hide')
   // clear change password form fields
@@ -314,6 +339,7 @@ const addHandlers = () => {
     event.preventDefault()
     $(event.target).find('.dropdown-menu').first().stop(true, true).slideUp(
       250, () => {
+        // close dropdown menu
         $('.dropdown').removeClass('open')
         $('.dropdown').find('.dropdown-toggle').attr('aria-expanded', 'false')
         // clear fields
@@ -328,6 +354,7 @@ module.exports = {
   appendView,
   prependView,
   insertView,
+  removeView,
   collapseNavbar,
   formAlert,
   clearForm,
