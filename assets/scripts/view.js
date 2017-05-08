@@ -259,10 +259,10 @@ const showUpdateItem = (event) => {
   const updateTemplate = require('./templates/item-update.handlebars')
   const itemDiv = $(event.target).closest('.show-item')
   removeView(itemDiv)
-  // replaceView(itemDiv, updateTemplate(item))
   insertView('.content-div', updateTemplate(item))
   mGrid.remove(itemDiv)
   mGrid.layout()
+  $('html, body').animate({ scrollTop: 0 }, 200)
 }
 
 //  saveUpdateItem(item)
@@ -271,10 +271,10 @@ const showUpdateItem = (event) => {
 const saveUpdateItem = (item) => {
   // render handlebars template to show new item
   const viewTemplate = require('./templates/item-show.handlebars')
-  const itemDiv = $('.edit-item')
-  replaceView(itemDiv, viewTemplate(item))
-  // $(itemDiv).removeClass()
-  // $(itemDiv).addClass()
+  const restoreContent = viewTemplate(item)
+  $('.edit-item').remove()
+  $(restoreContent).insertAfter($('.grid-sizer'))
+  mGrid.prepended($('.grid-item').first())
   mGrid.layout()
 }
 
@@ -293,10 +293,16 @@ const cancelUpdateItem = (event) => {
     }
   }
 
+  // remove edit item div
+  $('.edit-item').remove()
+
   // render handlebars template for original data view
   const viewTemplate = require('./templates/item-show.handlebars')
-  const itemDiv = $(event.target).closest('.update-item')
-  replaceView(itemDiv, viewTemplate(item))
+  const restoreContent = viewTemplate(item)
+  $(restoreContent).insertAfter($('.grid-sizer'))
+
+  mGrid.prepended($('.grid-item').first())
+  mGrid.layout()
 }
 
 //  showChangePasswordSuccess()

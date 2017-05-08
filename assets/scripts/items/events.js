@@ -122,9 +122,9 @@ const addHandlers = () => {
   // edit item link clicked
   $('.content-div').on('click', '.edit-item-link', view.showUpdateItem)
   // cancel link in update item form clicked
-  $('.content-div').on('click', '#update-item-cancel', view.cancelUpdateItem)
+  $('body').on('click', '#update-item-cancel', view.cancelUpdateItem)
   // update item form submitted
-  $('.content-div').on('submit', '#update-item', onUpdateItem)
+  $('body').on('submit', '#update-item', onUpdateItem)
 
   // delete item link clicked
   $('.content-div').on('click', '.delete-item-link', onConfirmDeleteItem)
