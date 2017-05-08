@@ -46,21 +46,22 @@ input:-webkit-autofill:focus {
 
 
 .row.make-columns {
-    -moz-column-width: 480px;
-    -webkit-column-width: 480px;
-    -moz-column-gap: 0;
-    -webkit-column-gap:0;
-}
+  column-gap: 0;
+  // -moz-column-gap: 0;
+  // -webkit-column-gap:0;
+  column-width: 550px;
+  // -moz-column-width: 480px;
+  // -webkit-column-width: 480px;
 
-.row.make-columns > div {
+
+  &.make-columns > div {
     display: inline-block;
-    // padding:  .5rem;
-    width:  100%;
+    width: 100%;
+  }
 }
 
- /* demo only* */
 .panel {
-    display: inline-block;
-    height: 100%;
-    width:  100%;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 }
