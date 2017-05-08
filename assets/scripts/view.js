@@ -4,6 +4,30 @@
 const Masonry = require('masonry-layout')
 let mGrid
 
+// https://www.npmjs.com/package/escape-html
+// escape('foo & bar') => 'foo &amp; bar'
+const escape = require('escape-html')
+
+const escapeHtml = (content) => {
+  return escape(content)
+}
+
+// https://www.npmjs.com/package/unescape
+// unescape ('&lt;div&gt;abc&lt;/div&gt;') => '<div>abc</div>'
+const unescape = require('unescape')
+
+const unescapeHtml = (content) => {
+  return unescape(content)
+}
+
+const cleanBreaks = (content) => {
+  content = content.replace(`\n\n`, "<br>")
+  content = content.replace(`\n`, "<br>")
+  content = content.replace("<br><br>", "<br>")
+
+  return content
+}
+
 //
 // VIEW RENDERING METHODS
 //
@@ -174,6 +198,9 @@ const enableNewItem = () => {
 
 const setPublicMode = () => {
   closeAlert()
+  removeView('.edit-item')
+  removeView('.add-item')
+
   // render handlebars template for public nav
   const navTemplate = require('./templates/nav-public.handlebars')
   renderView('.navbar-div', navTemplate())
@@ -217,6 +244,7 @@ const showItems = (data) => {
   const content = contentTemplate({ items: data })
   renderView('.content-div', content)
   initGrid()
+  // initHljs()
 }
 
 //  showNewItem()
@@ -252,7 +280,7 @@ const showUpdateItem = (event) => {
   const item = {
     id: $(event.target).closest('.panel').data('id'),
     title: $(event.target).closest('.panel').find('.item-title').text(),
-    body: $(event.target).closest('.panel').find('.item-body').html()
+    body: $(event.target).closest('.panel').find('.item-body code').html()
   }
 
   // render handlebars template for edit item form
@@ -271,6 +299,7 @@ const showUpdateItem = (event) => {
 const saveUpdateItem = (item) => {
   // render handlebars template to show new item
   const viewTemplate = require('./templates/item-show.handlebars')
+
   const restoreContent = viewTemplate(item)
   $('.edit-item').remove()
   $(restoreContent).insertAfter($('.grid-sizer'))
@@ -334,7 +363,28 @@ const showChangePasswordFailure = () => {
 // addHandlers()
 //    assign event handlers to forms, buttons, and links in the UI
 
+// const initHljs = () => {
+//   hljs.configure({
+//     tabReplace: '  ',   // 2 spaces
+//     classPrefix: '',    // don't append class prefix
+//     useBR: true          // … other options aren't changed
+//   })
+//
+//   hljs.configure({useBR: true})
+//
+//   // $('div.code').each(function(i, block) {
+//   //   hljs.highlightBlock(block);
+//   // });
+//
+//   $('body pre code').each(function (i, e) {
+//     hljs.highlightBlock(e)
+//   })
+// }
+
 const addHandlers = () => {
+  // hljs.initHighlightingOnLoad()
+  // initHljs()
+
   // add animation to dropdown expand
   $('.navbar-div').on('show.bs.dropdown', '.dropdown', (event) => {
     $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown(250)
@@ -355,7 +405,9 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  // hljs,
+  escapeHtml,
+  unescapeHtml,
+  cleanBreaks,
   renderView,
   appendView,
   prependView,

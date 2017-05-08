@@ -25,6 +25,8 @@ const onCreateItem = function (event) {
   const data = getFormFields(event.target)
 
   // parse data in body & add break <br> at end of each line
+  // const content = view.cleanBreaks(data.item.body)
+  // console.log(content)
 
   // prevent default form post
   event.preventDefault()
