@@ -4,7 +4,8 @@
 const Masonry = require('masonry-layout')
 let mGrid
 
-const Handlebars = require('handlebars')
+// const Handlebars = require('handlebars')
+// const Autosize = require('autosize')
 
 // // https://www.npmjs.com/package/escape-html
 // // escape('foo & bar') => 'foo &amp; bar'
@@ -249,16 +250,6 @@ const showItems = (data) => {
   const content = contentTemplate({items: data})
   renderView('.content-div', content)
   initGrid()
-
-  // const source = require('./templates/item-grid.handlebars')
-  // const contentTemplate = Handlebars.compile(source, {preventIndent: true})
-
-  // Handlebars.templates.showitem(source, {preventIndent: true})
-  // handlebars.precompile(content, {noEscape: true})
-  // const template = Handlebars.compile(source)
-  // const content = template({items: data})
-  // renderView('.content-div', content)
-  // initGrid()
 }
 
 //  showNewItem()
