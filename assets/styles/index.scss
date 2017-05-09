@@ -29,8 +29,8 @@ select:-webkit-autofill:focus {
 }
 
 // tab ui for public authentication forms
-.nav-tabs {
-  border-bottom: 0;
+.tab-content .panel{
+  border-top: 0;
 }
 
 // input groups in forms
@@ -68,4 +68,8 @@ textarea {
 
 .grid-item {
   display: inline-block;
+}
+
+button span {
+  margin-right: 6px;
 }

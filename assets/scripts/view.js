@@ -4,29 +4,29 @@
 const Masonry = require('masonry-layout')
 let mGrid
 
-// https://www.npmjs.com/package/escape-html
-// escape('foo & bar') => 'foo &amp; bar'
-const escape = require('escape-html')
-
-const escapeHtml = (content) => {
-  return escape(content)
-}
-
-// https://www.npmjs.com/package/unescape
-// unescape ('&lt;div&gt;abc&lt;/div&gt;') => '<div>abc</div>'
-const unescape = require('unescape')
-
-const unescapeHtml = (content) => {
-  return unescape(content)
-}
-
-const cleanBreaks = (content) => {
-  content = content.replace(`\n\n`, "<br>")
-  content = content.replace(`\n`, "<br>")
-  content = content.replace("<br><br>", "<br>")
-
-  return content
-}
+// // https://www.npmjs.com/package/escape-html
+// // escape('foo & bar') => 'foo &amp; bar'
+// const escape = require('escape-html')
+//
+// const escapeHtml = (content) => {
+//   return escape(content)
+// }
+//
+// // https://www.npmjs.com/package/unescape
+// // unescape ('&lt;div&gt;abc&lt;/div&gt;') => '<div>abc</div>'
+// const unescape = require('unescape')
+//
+// const unescapeHtml = (content) => {
+//   return unescape(content)
+// }
+//
+// const cleanBreaks = (content) => {
+//   content = content.replace(`\n\n`, "<br>")
+//   content = content.replace(`\n`, "<br>")
+//   content = content.replace("<br><br>", "<br>")
+//
+//   return content
+// }
 
 //
 // VIEW RENDERING METHODS
@@ -36,42 +36,42 @@ const cleanBreaks = (content) => {
 //    replaces element's html with content
 
 const renderView = (element, content) => {
-  $(element).html(content)
+  $(element).html(content).slideDown(250)
 }
 
 // appendView(element, content)
 //    appends content to the end of element's html
 
 const appendView = (element, content) => {
-  $(element).append(content)
+  $(element).append(content).slideDown(250)
 }
 
 // prependView(element, content)
 //    prepends content in front of element inside a common parent
 
 const prependView = (element, content) => {
-  $(content).prependTo(element)
+  $(content).prependTo(element).slideDown(250)
 }
 
 // insertView(element, content)
 //    inserts content before element's html
 
 const insertView = (element, content) => {
-  $(element).before(content)
+  $(element).before(content).slideDown(250)
 }
 
 // replaceView(element, content)
 //    replaces element with content
 
 const replaceView = (element, content) => {
-  $(element).replaceWith(content)
+  $(element).replaceWith(content).slideDown(250)
 }
 
 // removeView(element, content)
 //    replaces element with content
 
 const removeView = (element) => {
-  $(element).remove()
+  $(element).remove().slideUp(250)
 }
 
 //
@@ -405,9 +405,9 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  escapeHtml,
-  unescapeHtml,
-  cleanBreaks,
+  // escapeHtml,
+  // unescapeHtml,
+  // cleanBreaks,
   renderView,
   appendView,
   prependView,
