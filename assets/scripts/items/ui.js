@@ -7,6 +7,7 @@ const view = require('../view')
 //    successful item index
 
 const getItemsSuccess = (response) => {
+  debugger
   view.showItems(response.items)
 }
 

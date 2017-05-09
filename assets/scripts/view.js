@@ -7,30 +7,6 @@ let mGrid
 // const Handlebars = require('handlebars')
 // const Autosize = require('autosize')
 
-// // https://www.npmjs.com/package/escape-html
-// // escape('foo & bar') => 'foo &amp; bar'
-// const escape = require('escape-html')
-//
-// const escapeHtml = (content) => {
-//   return escape(content)
-// }
-//
-// // https://www.npmjs.com/package/unescape
-// // unescape ('&lt;div&gt;abc&lt;/div&gt;') => '<div>abc</div>'
-// const unescape = require('unescape')
-//
-// const unescapeHtml = (content) => {
-//   return unescape(content)
-// }
-//
-// const cleanBreaks = (content) => {
-//   content = content.replace(`\n\n`, "<br>")
-//   content = content.replace(`\n`, "<br>")
-//   content = content.replace("<br><br>", "<br>")
-//
-//   return content
-// }
-
 //
 // VIEW RENDERING METHODS
 //

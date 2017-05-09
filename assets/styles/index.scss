@@ -45,8 +45,8 @@ select:-webkit-autofill:focus {
 
 // textarea used for snippet input
 textarea {
-  box-sizing: padding-box;
-  display:block;
+  // box-sizing: padding-box;
+  // display:block;
   font-family: monospace;
   // font-size:14px;
   height: auto;
