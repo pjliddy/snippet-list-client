@@ -60,10 +60,10 @@ textarea {
 *, *:before, *:after {box-sizing:  border-box !important;}
 
 .item-grid {
-  // -moz-column-width: 600px;
+  -moz-column-width: 600px;
   -webkit-column-width: 600px;
-  //  -moz-column-gap: .5em;
-  //  -webkit-column-gap: 0;
+  -moz-column-gap: .5em;
+  -webkit-column-gap: 0;
 }
 
 .grid-item {
