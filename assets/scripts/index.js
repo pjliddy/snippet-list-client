@@ -12,14 +12,6 @@ $(() => {
   itemEvents.addHandlers()
   view.addHandlers()
   view.setPublicMode()
-
-  // const Masonry = require('masonry-layout')
-  // const mGrid = new Masonry('.grid', {
-  //   // options...
-  //   itemSelector: '.grid-item', // use a separate class for itemSelector, other than .col-
-  //   columnWidth: '.grid-sizer',
-  //   percentPosition: true
-  // })
 })
 
 // use require with a reference to bundle the file and use it in this file

@@ -380,6 +380,7 @@ const showChangePasswordFailure = () => {
 //     hljs.highlightBlock(e)
 //   })
 // }
+// const Handlebars = require('handlebars')
 
 const addHandlers = () => {
   // hljs.initHighlightingOnLoad()
