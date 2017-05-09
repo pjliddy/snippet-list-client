@@ -4,6 +4,8 @@
 const Masonry = require('masonry-layout')
 let mGrid
 
+const Handlebars = require('handlebars')
+
 // // https://www.npmjs.com/package/escape-html
 // // escape('foo & bar') => 'foo &amp; bar'
 // const escape = require('escape-html')
@@ -240,11 +242,23 @@ const initGrid = () => {
 
 const showItems = (data) => {
   // render handlebars template for private nav
+
+// set preventIndent = true???
+
   const contentTemplate = require('./templates/item-grid.handlebars')
-  const content = contentTemplate({ items: data })
+  const content = contentTemplate({items: data})
   renderView('.content-div', content)
   initGrid()
-  // initHljs()
+
+  // const source = require('./templates/item-grid.handlebars')
+  // const contentTemplate = Handlebars.compile(source, {preventIndent: true})
+
+  // Handlebars.templates.showitem(source, {preventIndent: true})
+  // handlebars.precompile(content, {noEscape: true})
+  // const template = Handlebars.compile(source)
+  // const content = template({items: data})
+  // renderView('.content-div', content)
+  // initGrid()
 }
 
 //  showNewItem()
@@ -280,7 +294,7 @@ const showUpdateItem = (event) => {
   const item = {
     id: $(event.target).closest('.panel').data('id'),
     title: $(event.target).closest('.panel').find('.item-title').text(),
-    body: $(event.target).closest('.panel').find('.item-body code').html()
+    body: $(event.target).closest('.panel').find('.item-body').html()
   }
 
   // render handlebars template for edit item form
@@ -380,7 +394,6 @@ const showChangePasswordFailure = () => {
 //     hljs.highlightBlock(e)
 //   })
 // }
-// const Handlebars = require('handlebars')
 
 const addHandlers = () => {
   // hljs.initHighlightingOnLoad()
