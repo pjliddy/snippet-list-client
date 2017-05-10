@@ -48,6 +48,7 @@ textarea {
   font-family: monospace;
   height: auto;
   overflow: hidden;
+  overflow-y: scroll;
   resize: vertical;
   white-space: pre-wrap;
 }
