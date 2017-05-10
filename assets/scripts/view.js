@@ -258,7 +258,7 @@ const showUpdateItem = (event) => {
   const item = {
     id: $(event.target).closest('.panel').data('id'),
     title: $(event.target).closest('.panel').find('.item-title').text(),
-    body: $(event.target).closest('.panel').find('.item-body').html()
+    body: $(event.target).closest('.panel').find('.item-body').text()
   }
 
   // render handlebars template for edit item form
