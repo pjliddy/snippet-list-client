@@ -7,7 +7,7 @@ const view = require('../view')
 //    successful item index
 
 const getItemsSuccess = (response) => {
-  debugger
+  // update view state
   view.showItems(response.items)
 }
 
@@ -15,6 +15,7 @@ const getItemsSuccess = (response) => {
 //    error from item index
 
 const getItemsFailure = () => {
+  // set alert error
   view.showAlert(`error`, `Hmmm. Couldn't get your list of items...`)
 }
 
@@ -22,6 +23,7 @@ const getItemsFailure = () => {
 //    successful create item
 
 const createItemSuccess = () => {
+  // update view state
   view.cancelNewItem()
 }
 
@@ -29,6 +31,7 @@ const createItemSuccess = () => {
 //    error from create item
 
 const createItemFailure = () => {
+  // set alert error
   view.showAlert(`error`, `There is a problem creating your snippet.`)
 }
 
@@ -36,6 +39,7 @@ const createItemFailure = () => {
 //    successful update item
 
 const updateItemSuccess = (response) => {
+  // update view state
   view.saveUpdateItem(response)
 }
 
@@ -43,6 +47,7 @@ const updateItemSuccess = (response) => {
 //    error from update item
 
 const updateItemFailure = () => {
+  // set alert error
   view.showAlert(`error`, `There is a problem saving your updates.`)
 }
 
@@ -50,6 +55,7 @@ const updateItemFailure = () => {
 //    error from delete item
 
 const deleteItemFailure = () => {
+  // set alert error
   view.showAlert(`error`, `There is a problem deleting your snippet.`)
 }
 

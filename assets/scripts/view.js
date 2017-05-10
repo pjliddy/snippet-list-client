@@ -1,11 +1,9 @@
 'use strict'
 
-// const hljs = require('highlight.js')
+// Masonry grid layout for Bootstrap
 const Masonry = require('masonry-layout')
+// global variable for Masonry grid layout
 let mGrid
-
-// const Handlebars = require('handlebars')
-// const Autosize = require('autosize')
 
 //
 // VIEW RENDERING METHODS
@@ -56,13 +54,6 @@ const removeView = (element) => {
 //
 // VALIDATION & ALERT METHODS
 //
-
-// navBarCollapse()
-//    collapses navbar (for responsive selections)
-
-const collapseNavbar = () => {
-  $('.navbar-collapse').collapse('hide')
-}
 
 // formAlert(form, field)
 //    triggers form input validation alert
@@ -131,6 +122,13 @@ const closeError = () => {
 
 const closeAlert = () => {
   $('.alert').alert('close')
+}
+
+// collapseNavbar()
+//    collapses navbar (for responsive selections)
+
+const collapseNavbar = () => {
+  $('.navbar-collapse').collapse('hide')
 }
 
 // confirmDelete(id)
@@ -207,8 +205,9 @@ const setPrivateMode = () => {
 
 const initGrid = () => {
   mGrid = new Masonry('.grid', {
-    // options...
-    itemSelector: '.grid-item', // use a class other than .col-*
+    // use a class other than .col-*
+    itemSelector: '.grid-item',
+    // set column width
     columnWidth: '.grid-sizer',
     percentPosition: true
   })
@@ -238,9 +237,7 @@ const showNewItem = () => {
   disableNewItem()
   // render handlebars template for new item form
   const contentTemplate = require('./templates/item-new.handlebars')
-
   insertView('.content-div', contentTemplate())
-  // prependView('.content-div', contentTemplate())
 }
 
 //  cancelNewItem()
@@ -257,7 +254,7 @@ const cancelNewItem = () => {
 //    show the update item form
 
 const showUpdateItem = (event) => {
-  // store values from current item to store (for cancel)
+  // store values from current item (in case of cancel)
   const item = {
     id: $(event.target).closest('.panel').data('id'),
     title: $(event.target).closest('.panel').find('.item-title').text(),
@@ -269,8 +266,10 @@ const showUpdateItem = (event) => {
   const itemDiv = $(event.target).closest('.show-item')
   removeView(itemDiv)
   insertView('.content-div', updateTemplate(item))
+  // update Masonry grid
   mGrid.remove(itemDiv)
   mGrid.layout()
+  // scroll to top to edit
   $('html, body').animate({ scrollTop: 0 }, 200)
 }
 
@@ -280,10 +279,10 @@ const showUpdateItem = (event) => {
 const saveUpdateItem = (item) => {
   // render handlebars template to show new item
   const viewTemplate = require('./templates/item-show.handlebars')
-
   const restoreContent = viewTemplate(item)
   $('.edit-item').remove()
   $(restoreContent).insertAfter($('.grid-sizer'))
+  // update Masonry grid
   mGrid.prepended($('.grid-item').first())
   mGrid.layout()
 }
@@ -310,7 +309,7 @@ const cancelUpdateItem = (event) => {
   const viewTemplate = require('./templates/item-show.handlebars')
   const restoreContent = viewTemplate(item)
   $(restoreContent).insertAfter($('.grid-sizer'))
-
+  // update Masonry grid
   mGrid.prepended($('.grid-item').first())
   mGrid.layout()
 }
@@ -344,28 +343,7 @@ const showChangePasswordFailure = () => {
 // addHandlers()
 //    assign event handlers to forms, buttons, and links in the UI
 
-// const initHljs = () => {
-//   hljs.configure({
-//     tabReplace: '  ',   // 2 spaces
-//     classPrefix: '',    // don't append class prefix
-//     useBR: true          // … other options aren't changed
-//   })
-//
-//   hljs.configure({useBR: true})
-//
-//   // $('div.code').each(function(i, block) {
-//   //   hljs.highlightBlock(block);
-//   // });
-//
-//   $('body pre code').each(function (i, e) {
-//     hljs.highlightBlock(e)
-//   })
-// }
-
 const addHandlers = () => {
-  // hljs.initHighlightingOnLoad()
-  // initHljs()
-
   // add animation to dropdown expand
   $('.navbar-div').on('show.bs.dropdown', '.dropdown', (event) => {
     $(event.target).find('.dropdown-menu').first().stop(true, true).slideDown(250)
@@ -386,9 +364,6 @@ const addHandlers = () => {
 }
 
 module.exports = {
-  // escapeHtml,
-  // unescapeHtml,
-  // cleanBreaks,
   renderView,
   appendView,
   prependView,

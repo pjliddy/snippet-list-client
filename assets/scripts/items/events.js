@@ -127,13 +127,14 @@ const addHandlers = () => {
   // delete item link clicked
   $('.content-div').on('click', '.delete-item-link', onConfirmDeleteItem)
 
-  // get item form submitted -- not used
+  // get item form submitted
+  // FUNCTIONAL BUT NOT IN USE FOR CURRENT VERSION
   // $('.content-div').on('submit', '#get-item', onGetItem)
 }
 
 // onGetItem()
 //    handle form submission for get item event
-//    not in use
+//    FUNCTIONAL BUT NOT IN USE FOR CURRENT VERSION
 //
 // const onGetItem = function (event) {
 //   event.preventDefault()

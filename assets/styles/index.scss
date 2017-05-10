@@ -1,12 +1,12 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
-@import '~highlight.js/styles/_default.scss';
 
 // color for input background in chrome (replace default yellow)
 $input-background-color: #fff;
 $input-shadow-color: rgba(102, 175, 233, .6);
 
-// autocomplete styles in chrome
+// don't show yellow colors for autocomplete styles in chrome
+// only needed for webkit styles
 input:focus,
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -22,61 +22,59 @@ select:-webkit-autofill:focus {
                       0 0 8px $input-shadow-color;
 }
 
-/// dropdown login form CSS
+// dropdown login form CSS
 .dropdown-menu {
   min-width: 320px;
   padding: 15px 15px 0;
 }
 
-// tab ui for public authentication forms
-.tab-content .panel{
+// remove top border from tab ui on public authentication forms
+.tab-content .panel {
   border-top: 0;
 }
 
-// input groups in forms
+// make sure input groups in forms are full width
 .input-group {
   width: 100%;
 }
 
-// validation feedback on form fields
+// hide validation text below form fields
 .help-block {
   display: none;
 }
 
 // textarea used for snippet input
 textarea {
-  // box-sizing: padding-box;
-  // display:block;
   font-family: monospace;
-  // font-size:14px;
   height: auto;
-  // margin:50px auto;
-  overflow:hidden;
-  // padding:10px;
+  overflow: hidden;
   resize: vertical;
-  // width:250px;
 }
 
 // div used for snippet display
 .item-body {
   font-family: monospace;
   white-space: pre-wrap;
-  // word-break: normal;
 }
 
-*, *:before, *:after {box-sizing:  border-box !important;}
+// *, *:before, *:after {box-sizing:  border-box !important;}
 
+// used for Masonry
 .item-grid {
-  -moz-column-width: 600px;
-  -webkit-column-width: 600px;
-  -moz-column-gap: .5em;
-  -webkit-column-gap: 0;
+  column-gap: 0;
+  // -moz-column-gap: 0;
+  // -webkit-column-gap: 0;
+  column-width: 600px;
+  // -moz-column-width: 600px;
+  // -webkit-column-width: 600px;
 }
 
+// used for Masonry
 .grid-item {
   display: inline-block;
 }
 
+// add space between icon and text on buttons
 button span {
   margin-right: 6px;
 }
