@@ -4,6 +4,12 @@ This project is a code snippet collector. The concept is simple. Each item in th
 
 All developers have huge collections of bookmarks to articles, documentation, samples, etc. What I have find myself looking for most often is an example of how to do something. These solutions often get lost in the clutter of all the other related bookmarks managed by the browser.
 
+## Project Links
+- Client GitHub Repository: https://github.com/pjliddy/snippet-list-client
+- Client Deployed: https://pjliddy.github.io/snippet-list-client/
+- API GitHub Repository: https://github.com/pjliddy/snippet-list-api
+- API Deployed: https://snippet-list-api.herokuapp.com/
+
 ## Approach
 
 After creation of initial user stories and wireframes, the project was completed by following a lean, iterative approach. An MVP prototype was built to test and guarantee core functionality while leveraging tools like Bootstrap and Handlebars to maximize the quality of the output and allow for more focus on features.
@@ -14,9 +20,10 @@ The core steps in the approach:
 1. Test all authentication API routes with **cURL scripts**.
 1. Use `js-template` to create a **prototype user interface** for sending form-based CRUD requests via the RESTful API to the server
 1. **Generate scaffolding** on the Rails back end for Item resources
-1. Update prototype front end to include form-based CRUD requests to the **items API**
+1. Update prototype front end to include form-based CRUD requests to the **[items API](https://github.com/pjliddy/snippet-list-api)**
 1. Iterate and continuously improve to complete user stories for **user-based tasks**
 1. Iterate and continuously improve to complete user stories for **item-based tasks**
+1. Create and prioritize new user stories as feature improvements are identified
 1. Leverage **Handlebars** and a **view controller** to manage the Single Page Applicaiton (SPA).
 1. Limit the UI **standard Bootstrap** for presentation layer HTML, CSS, and JavaScript to maximize default interactivity, theming, and responsive behavior.
 1. Leverage SASS to recompile a **custom Bootstrap theme** through use of SCSS variables files.
@@ -36,8 +43,6 @@ This application leverages the following 3rd Party APIs and libraries:
 - [Bootstrap](http://getbootstrap.com/) - Bootstrap was used in its default state for the prototype phase, then configured and recompiled at run time by adding a custom SCSS variables file, along with some minor changes to the core SCSS element generators. This approach to implementing Bootstrap has guaranteed a fully responsive site since the project began.
 - [Masonry](https://masonry.desandro.com/)- Masonry is a JavaScript grid layout library that provides a dynamic, fluid,  multi-column layout for components of varying heights.
 - [Google Fonts](https://fonts.google.com/) - The Roboto family from Google Fonts is used throughout the application.
-
-
 
 ## User Stories
 
@@ -89,7 +94,7 @@ Users have a one to many relationship with Items
 
 The following routes make up the API for users and items.
 
-The repsoitory for the Items API can be found [here](https://github.com/pjliddy/snippet-list-api)
+[The repsoitory for the Items API can be found here](https://github.com/pjliddy/snippet-list-api)
 
 ### Users
 
@@ -114,5 +119,5 @@ The repsoitory for the Items API can be found [here](https://github.com/pjliddy/
 The next steps for improvement of the product are:
 
 1. Color **highlighting of code snippets** based on the appropriate language using a 3rd party library.
-1. The addition of a additional tables for langauges and/or categories
-1. More controlled sorting and filtering of the index of items
+1. The addition of a **additional tables** for langauges and/or categories
+1. More controlled **sorting and filtering** of the index of items, possibly using [Isotope](https://isotope.metafizzy.co/) to manage the UI
