@@ -1,6 +1,7 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
-
+@import '~highlight.js/styles/tomorrow-night-bright.css';
+// @import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css");
 // color for input background in chrome (replace default yellow)
 $input-background-color: #fff;
 $input-shadow-color: rgba(102, 175, 233, .6);
@@ -44,8 +45,11 @@ select:-webkit-autofill:focus {
 }
 
 // textarea used for snippet input
-textarea {
-  font-family: monospace;
+textarea.form-control{
+  background-color: #000;
+  color: #fff;
+  font-family: $font-family-monospace;
+  font-weight: 400;
   height: auto;
   overflow: hidden;
   overflow-y: scroll;
@@ -55,8 +59,10 @@ textarea {
 
 // div used for snippet display
 .item-body {
-  font-family: monospace;
+  font-family: $font-family-monospace;
+  font-weight: 400;
   white-space: pre-wrap;
+  padding:0;
 }
 
 // *, *:before, *:after {box-sizing:  border-box !important;}

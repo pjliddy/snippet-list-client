@@ -5,6 +5,18 @@ const Masonry = require('masonry-layout')
 // global variable for Masonry grid layout
 let mGrid
 
+// highlight.js for code highlighting
+const hljs = require('highlight.js')
+
+// refreshHighlights()
+//
+
+const refreshHighlights = () => {
+  $('.content-div pre code').each(function (i, block) {
+    hljs.highlightBlock(block)
+  })
+}
+
 //
 // VIEW RENDERING METHODS
 //
@@ -225,6 +237,7 @@ const showItems = (data) => {
   const content = contentTemplate({items: data})
   renderView('.content-div', content)
   initGrid()
+  refreshHighlights()
 }
 
 //  showNewItem()
@@ -285,6 +298,7 @@ const saveUpdateItem = (item) => {
   // update Masonry grid
   mGrid.prepended($('.grid-item').first())
   mGrid.layout()
+  refreshHighlights()
 }
 
 // cancelUpdateItem(event)
@@ -312,6 +326,12 @@ const cancelUpdateItem = (event) => {
   // update Masonry grid
   mGrid.prepended($('.grid-item').first())
   mGrid.layout()
+  // refreshHighlights()
+  const newBlock = $('.grid-item').first().find('code')
+
+  $(newBlock).each(function (i, block) {
+    hljs.highlightBlock(block)
+  })
 }
 
 //  showChangePasswordSuccess()
@@ -361,9 +381,15 @@ const addHandlers = () => {
         clearForm($(event.target).find('.form').val('id'))
       })
   })
+
+  // hljs.initHighlightingOnLoad()
+  // $('.content-div pre code').each(function (i, block) {
+  //   hljs.highlightBlock(block)
+  // })
 }
 
 module.exports = {
+  refreshHighlights,
   renderView,
   appendView,
   prependView,
