@@ -10,6 +10,7 @@ const view = require('./view')
 
 $(() => {
   setAPIOrigin(location, config)
+
   authEvents.addHandlers()
   itemEvents.addHandlers()
   view.addHandlers()

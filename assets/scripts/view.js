@@ -118,7 +118,7 @@ const showAlert = (mode, message) => {
     replaceView('.alert', content)
   } else {
     // insert a new alert
-    insertView('.content-div', content)
+    prependView('.content-div', content)
   }
 }
 
@@ -250,7 +250,7 @@ const showNewItem = () => {
   disableNewItem()
   // render handlebars template for new item form
   const contentTemplate = require('./templates/item-new.handlebars')
-  insertView('.content-div', contentTemplate())
+  prependView('.content-div', contentTemplate())
 }
 
 //  cancelNewItem()
@@ -278,7 +278,7 @@ const showUpdateItem = (event) => {
   const updateTemplate = require('./templates/item-update.handlebars')
   const itemDiv = $(event.target).closest('.show-item')
   removeView(itemDiv)
-  insertView('.content-div', updateTemplate(item))
+  prependView('.content-div', updateTemplate(item))
   // update Masonry grid
   mGrid.remove(itemDiv)
   mGrid.layout()

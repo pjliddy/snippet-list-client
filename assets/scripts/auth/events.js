@@ -82,7 +82,6 @@ const onChangePassword = function (event) {
   const data = getFormFields(event.target)
   // prevent default form post
   event.preventDefault()
-
   // validate input fields
   if (!data.passwords.old) {
     view.formAlert('#change-password', '#change-password-old')
