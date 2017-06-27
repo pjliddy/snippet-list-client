@@ -19,7 +19,7 @@ $(() => {
   // when client app loads, make a GET request to the API
   // to wake up heroku while user signs up/in
   $.ajax({
-    url: config.apiOrigin,
+    url: config.apiOrigin + '/examples',
     method: 'GET'
   })
 })
