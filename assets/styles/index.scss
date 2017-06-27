@@ -1,4 +1,5 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import 'vars';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 @import '~highlight.js/styles/tomorrow-night-bright.css';
 
@@ -90,4 +91,8 @@ textarea.form-control{
 // add space between icon and text on buttons
 button span {
   margin-right: 6px;
+}
+
+.navbar-brand {
+  cursor: default;
 }

@@ -14,6 +14,8 @@ const hljs = require('highlight.js')
 const refreshHighlights = () => {
   $('.content-div pre code').each(function (i, block) {
     hljs.highlightBlock(block)
+    const lang = $(block)[0].classList[1]
+    $(block).closest('.panel').find('.item-language').text(lang)
   })
 }
 
@@ -236,8 +238,8 @@ const showItems = (data) => {
   const contentTemplate = require('./templates/item-grid.handlebars')
   const content = contentTemplate({items: data})
   renderView('.content-div', content)
-  initGrid()
   refreshHighlights()
+  initGrid()
 }
 
 //  showNewItem()
@@ -323,15 +325,16 @@ const cancelUpdateItem = (event) => {
   const viewTemplate = require('./templates/item-show.handlebars')
   const restoreContent = viewTemplate(item)
   $(restoreContent).insertAfter($('.grid-sizer'))
+
+  // $(newBlock).each(function (i, block) {
+  //   hljs.highlightBlock(block)
+  // })
+  refreshHighlights()
+  // const newBlock = $('.grid-item').first().find('code')
+
   // update Masonry grid
   mGrid.prepended($('.grid-item').first())
   mGrid.layout()
-  // refreshHighlights()
-  const newBlock = $('.grid-item').first().find('code')
-
-  $(newBlock).each(function (i, block) {
-    hljs.highlightBlock(block)
-  })
 }
 
 //  showChangePasswordSuccess()

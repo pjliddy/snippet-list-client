@@ -1,8 +1,10 @@
   <div class="col-xs-12 col-md-6 show-item grid-item">
   <div class="panel panel-default grid-item-content" data-id="{{item.id}}">
+    <!-- <div class="panel-heading">
+      <h5 class="item-language">{{item.language}}</h5>
+    </div> -->
     <div class="panel-body">
       <h4 class="item-title">{{item.title}}</h4>
-      <!-- <textarea class="form-control" name="item[body]" id="show-item-body" data-content="{{item.body}}" rows="3">{{newline item.body}}</textarea> -->
       <pre class="item-body" data-content="{{item.body}}"><code>{{ item.body}}</code></pre>
     </div>
     <div class="panel-footer">

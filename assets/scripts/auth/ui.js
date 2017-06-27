@@ -12,7 +12,7 @@ const signUpFailure = () => {
   // set alert error
   view.showAlert(`error`, `No dice. Something went wrong creating your account.`)
   // clear sign up form
-  view.clearForm('#sign-up')
+  // view.clearForm('#sign-up')
 }
 
 // signInSuccess(response)
@@ -32,7 +32,7 @@ const signInFailure = () => {
   // set alert error
   view.showAlert(`error`, `Looks like those are some bad credentials.`)
   // clear sign up form
-  view.clearForm('#sign-in')
+  // view.clearForm('#sign-in')
 }
 
 // changePasswordSuccess()
