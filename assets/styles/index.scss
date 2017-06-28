@@ -76,16 +76,18 @@ textarea.form-control{
 // used for Masonry
 .item-grid {
   column-gap: 0;
-  // -moz-column-gap: 0;
-  // -webkit-column-gap: 0;
+  -moz-column-gap: 0;
+  -webkit-column-gap: 0;
   column-width: 600px;
-  // -moz-column-width: 600px;
-  // -webkit-column-width: 600px;
+  -moz-column-width: 600px;
+  -webkit-column-width: 600px;
 }
 
 // used for Masonry
 .grid-item {
-  display: inline-block;
+  display: block;
+  box-sizing:  border-box !important;
+  // float: left;
 }
 
 // add space between icon and text on buttons

@@ -22,6 +22,7 @@ $(() => {
     url: config.apiOrigin + '/examples',
     method: 'GET'
   })
+
 })
 
 // use require with a reference to bundle the file and use it in this file

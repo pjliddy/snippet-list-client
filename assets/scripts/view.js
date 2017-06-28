@@ -223,7 +223,8 @@ const initGrid = () => {
     itemSelector: '.grid-item',
     // set column width
     columnWidth: '.grid-sizer',
-    percentPosition: true
+    percentPosition: true,
+    transitionDuration: '0.2s'
   })
 }
 
@@ -232,9 +233,6 @@ const initGrid = () => {
 
 const showItems = (data) => {
   // render handlebars template for private nav
-
-// set preventIndent = true???
-
   const contentTemplate = require('./templates/item-grid.handlebars')
   const content = contentTemplate({items: data})
   renderView('.content-div', content)
